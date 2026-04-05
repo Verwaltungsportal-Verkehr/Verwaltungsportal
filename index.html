@@ -14,7 +14,6 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap');
-
         :root {
             --gold: #d4af37;
             --gold-glow: rgba(212, 175, 55, 0.5);
@@ -69,7 +68,8 @@
             overflow: hidden;
         }
         .fullscreen-bg img {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             opacity: 0.15;
             filter: blur(5px);
@@ -135,6 +135,13 @@
             color: white !important;
             border-radius: 0.5rem !important;
             padding: 0.75rem !important;
+            appearance: none;
+        }
+        
+        select option {
+            background-color: var(--bg-dark);
+            color: white;
+            font-weight: bold;
         }
 
         input:focus, textarea:focus, select:focus {
@@ -179,6 +186,11 @@
             color: white;
         }
         .tool-icon:hover { border-color: var(--gold); color: var(--gold); }
+        
+        /* Custom Scrollbar for StVO Search */
+        #stvo_results::-webkit-scrollbar { width: 6px; }
+        #stvo_results::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+        #stvo_results::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
     </style>
 </head>
 <body class="tracking-tight">
@@ -307,23 +319,33 @@
                         </div>
                         <div>
                             <h4 class="text-xs font-black text-white/30 uppercase tracking-[0.3em] mb-4">C. Analyse</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 relative">
                                 <div><label>Hauptursache</label>
-                                    <select id="v_ursache" class="w-full">
-                                        <option value="Vorfahrtsmissachtung">Vorfahrtsmissachtung</option>
-                                        <option value="Geschwindigkeit">Geschwindigkeit</option>
-                                        <option value="Alkohol/Drogen">Alkohol/Drogen</option>
-                                        <option value="Ablenkung">Ablenkung</option>
-                                        <option value="Sonstiges">Sonstiges</option>
-                                    </select>
+                                    <div class="relative">
+                                        <select id="v_ursache" class="w-full cursor-pointer pr-10">
+                                            <option value="Vorfahrtsmissachtung">Vorfahrtsmissachtung</option>
+                                            <option value="Geschwindigkeit">Geschwindigkeit</option>
+                                            <option value="Alkohol/Drogen">Alkohol/Drogen</option>
+                                            <option value="Ablenkung">Ablenkung</option>
+                                            <option value="Sonstiges">Sonstiges</option>
+                                        </select>
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gold">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div><label>Witterung</label>
-                                    <select id="v_wetter" class="w-full">
-                                        <option value="Trocken / Gut">Trocken / Gut</option>
-                                        <option value="Regen / Nässe">Regen / Nässe</option>
-                                        <option value="Nebel / Sicht">Nebel / Sicht</option>
-                                        <option value="Schnee / Glätte">Schnee / Glätte</option>
-                                    </select>
+                                    <div class="relative">
+                                        <select id="v_wetter" class="w-full cursor-pointer pr-10">
+                                            <option value="Trocken / Gut">Trocken / Gut</option>
+                                            <option value="Regen / Nässe">Regen / Nässe</option>
+                                            <option value="Nebel / Sicht">Nebel / Sicht</option>
+                                            <option value="Schnee / Glätte">Schnee / Glätte</option>
+                                        </select>
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gold">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div><label>Sachverhaltsschilderung</label><textarea id="v_sachverhalt" rows="5" class="w-full" placeholder="Detaillierte Beschreibung..."></textarea></div>
@@ -345,17 +367,20 @@
                 <div class="glass-card p-6 flex flex-col lg:flex-row gap-6">
                     <div class="w-full lg:w-48 flex flex-wrap lg:flex-col gap-3">
                         <label class="text-[10px] text-gold font-bold">FAHRZEUGE</label>
-                        <button onclick="addVehicle('car')" class="tool-icon"><i class="fas fa-car"></i></button>
-                        <button onclick="addVehicle('truck')" class="tool-icon"><i class="fas fa-truck"></i></button>
-                        <label class="text-[10px] text-gold font-bold mt-4">ANNOTATION</label>
-                        <button onclick="addArrow()" class="tool-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-                        <button onclick="addText()" class="tool-icon"><i class="fas fa-font"></i></button>
+                        <button onclick="addVehicle('car')" class="tool-icon" title="PKW"><i class="fas fa-car"></i></button>
+                        <button onclick="addVehicle('truck')" class="tool-icon" title="LKW"><i class="fas fa-truck"></i></button>
+                        
+                        <label class="text-[10px] text-gold font-bold mt-4">STRASSEN / ANNOTATION</label>
+                        <button onclick="addRoundabout()" class="tool-icon" title="Kreisverkehr"><i class="fas fa-sync"></i></button>
+                        <button onclick="addArrow()" class="tool-icon" title="Pfeil"><i class="fas fa-long-arrow-alt-right"></i></button>
+                        <button onclick="addText()" class="tool-icon" title="Textfeld"><i class="fas fa-font"></i></button>
+                        
                         <label class="text-[10px] text-red-500 font-bold mt-4">EDITOR</label>
-                        <button onclick="deleteObject()" class="tool-icon text-red-500"><i class="fas fa-eraser"></i></button>
-                        <button onclick="canvas.clear();" class="tool-icon text-red-700"><i class="fas fa-trash"></i></button>
+                        <button onclick="deleteObject()" class="tool-icon text-red-500" title="Löschen"><i class="fas fa-eraser"></i></button>
+                        <button onclick="canvas.clear();" class="tool-icon text-red-700" title="Alles Leeren"><i class="fas fa-trash"></i></button>
                         <button onclick="downloadSkizze()" class="btn-gold text-[10px] py-3 rounded mt-4">BILD SPEICHERN</button>
                     </div>
-                    <div class="flex-1 bg-black/40 rounded-xl border border-white/10 flex justify-center items-center overflow-hidden">
+                    <div class="flex-1 bg-black/40 rounded-xl border border-white/10 flex justify-center items-center overflow-hidden relative">
                         <canvas id="sketchCanvas" width="800" height="500"></canvas>
                     </div>
                 </div>
@@ -365,6 +390,12 @@
                 <div class="mb-12 text-center">
                     <h2 class="text-4xl font-black uppercase italic mb-2">Informations-Zentrale</h2>
                     <p class="text-white/40">Gesetzestexte und operative Hilfsmittel.</p>
+                </div>
+
+                <div class="glass-card p-6 mb-10 border-l-4 border-l-gold">
+                    <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-gold"><i class="fas fa-search mr-2"></i> StVO Schnellsuche</h3>
+                    <input type="text" id="stvo_search" class="w-full text-lg p-4 bg-black/30" placeholder="Suchbegriff eingeben (z.B. Führerschein, Vorfahrt...)" oninput="searchStVO()">
+                    <div id="stvo_results" class="mt-4 max-h-96 overflow-y-auto space-y-4 pr-2 hidden"></div>
                 </div>
 
                 <div class="mb-10">
@@ -392,7 +423,7 @@
                             <div class="text-2xl text-purple-400 mt-1"><i class="fas fa-bullhorn"></i></div>
                             <div><h3 class="font-bold text-white">Belehrungen</h3><p class="text-[10px] text-white/40 uppercase">Rechtsbehelfsbelehrungen</p></div>
                         </a>
-                    </div>
+                     </div>
                 </div>
 
                 <div>
@@ -416,6 +447,7 @@
                                     <div><label>Messwert (km/h)</label><input type="number" id="calc_speed" class="w-full text-center font-bold" oninput="calculateFine()"></div>
                                 </div>
                                 <div id="calc_result" class="bg-black/30 p-6 rounded-xl border border-white/5 hidden">
+                                    <div class="flex justify-between items-center mb-1"><span class="text-xs text-white/40 uppercase">Toleranz-Abzug:</span><span id="res_tol" class="font-bold text-red-400">0 km/h</span></div>
                                     <div class="flex justify-between items-center mb-2"><span class="text-xs text-white/40 uppercase">Netto-Wert:</span><span id="res_netto" class="font-black text-gold">0 km/h</span></div>
                                     <div class="flex justify-between items-center mb-4"><span class="text-xs text-white/40 uppercase">Bußgeld:</span><span id="res_money" class="text-2xl font-black text-gold italic">0.00 €</span></div>
                                     <div id="res_ban_box" class="pt-3 border-t border-white/10 hidden"><div class="flex items-center gap-2 text-red-500 font-bold text-[10px] uppercase italic"><i class="fas fa-exclamation-triangle"></i><span id="res_ban"></span></div></div>
@@ -430,11 +462,12 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold uppercase italic text-lg leading-tight">Promille-Simulator</h4>
-                                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Atemalkohol-Schätzung</p>
+                                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Atemalkohol-Schätzung (Widmark)</p>
                                 </div>
                             </div>
                             <div class="space-y-4">
-                                <div class="grid grid-cols-2 gap-4">
+                                <div class="grid grid-cols-3 gap-4">
+                                    <div><label>Gewicht (kg)</label><input type="number" id="alc_weight" value="80" min="40" class="w-full text-center" oninput="calculateAlcohol()"></div>
                                     <div><label>Bier (0,5l)</label><input type="number" id="alc_beer" value="0" min="0" class="w-full text-center" oninput="calculateAlcohol()"></div>
                                     <div><label>Schnaps (4cl)</label><input type="number" id="alc_shot" value="0" min="0" class="w-full text-center" oninput="calculateAlcohol()"></div>
                                 </div>
@@ -458,6 +491,61 @@
     </div>
 
     <script>
+        // StVO Database for Search Functionality
+        const stvoGesetze = [
+            { t: "§ 1 Grundregeln", c: "(1) Die Teilnahme am Straßenverkehr erfordert ständige Vorsicht und gegenseitige Rücksicht. (2) Die Straßenverkehrsordnung regelt und lenkt den öffentlichen Verkehr. (3) Wer am Straßenverkehr teilnimmt, hat sich so zu verhalten, dass kein anderer geschädigt, gefährdet oder mehr als nach den Umständen unvermeidbar behindert oder belästigt wird. (4) Öffentlicher Verkehr findet auch auf nicht gewidmeten Straßen statt, wenn diese mit Zustimmung oder unter Duldung des Verfügungsberechtigten genutzt werden können. Dagegen ist der Verkehr auf öffentlichen Straßen nicht öffentlich, wenn diese, z.B. wegen Bauarbeiten, durch Absperrschranken oder ähnlich wirksame Mittel für alle Verkehrsarten gesperrt sind. (5) Jeder Verkehrsteilnehmer hat sich, sofern er am öffentlichen Verkehr teilnimmt, anzuschnallen." },
+            { t: "§ 2 Straßenbenutzung Pflicht", c: "(1) Fahrzeuge müssen die Fahrbahnen benutzen, von zwei Fahrbahnen die rechte. Seitenstreifen sind nicht Bestandteil der Fahrbahn. (2) Es ist möglichst weit rechts zu fahren, nicht nur bei Gegenverkehr, beim Überholtwerden, an Kuppen, in Kurven oder bei Unübersichtlichkeit. (3) Vor Antritt jeder Fahrt zu prüfen, ob es erforderlich ist, die Fahrt durchzuführen, da das Ziel mit anderen Verkehrsmitteln nicht erreichbar ist." },
+            { t: "§ 3 Fahren ohne Führerschein", c: "(1) Wer ein Kraftfahrzeug führt, ohne den nötigen Führerschein zu besitzen, macht sich strafbar und wird mit einer Geldstrafe bestraft. (2) Wer ein Kraftfahrzeug führt, obwohl ihm dieses verboten wurde, zählt als Wiederholungstäter. (3) Für folgende Fahrzeugklassen werden Führerscheine benötigt: Nr. 1 PKW Nr. 2 LKW Nr. 3 Motorrad Nr. 4 Boot Nr. 5 Helikopter Nr. 6 Flugzeug (4) Zur Feststellung des Besitzes eines Führerscheines ist dieser auf Verlangen einem Polizeibeamten vorzuzeigen." },
+            { t: "§ 4 Straßenbenutzung durch mehrspurige Kraftfahrzeuge", c: "(1) Fahrzeuge müssen die Fahrbahnen benutzen, von zwei Fahrbahnen die rechte. Seitenstreifen sind nicht Bestandteil der Fahrbahn. (2) Es ist möglichst weit rechts zu fahren, nicht nur bei Gegenverkehr, beim Überholt werden, an Kuppen, in Kurven oder bei Unübersichtlichkeit. (3) Fahren abseits befestigter Straßen ist nicht gestattet und wird mit einer Geldstrafe bestraft" },
+            { t: "§ 6 Autobahnen", c: "(1) Autobahnen dürfen nur mit Kraftfahrzeugen befahren werden, die eine Mindestgeschwindigkeit von mehr als 100 km/h erreichen. (2) Es darf nur an gekennzeichneten Anschlussstellen aufgefahren werden. (3) Der Verkehr auf der durchgehenden Fahrbahn hat Vorfahrt. (4) Die zulässige Höchstgeschwindigkeit beträgt auch unter günstigen Umständen Nr. 1 für LKW 150 km/h Nr. 2 für PKW sowie für andere Kraftfahrzeuge mit einem zulässigen Ladevolumen bis 200 Kilogramm 250 km/h (5) Das Wenden und Rückwärtsfahren ist verboten. (6) Das Halten, auch auf dem Seitenstreifen, ist verboten. Ausgenommen sind Fahrzeugpannen und medizinische Notfälle. (7) dürfen von Fußgängern nicht betreten werden. (8) Innerhalb geschlossener Ortschaften beträgt die Höchstgeschwindigkeit auf Autobahnen 150 km/h" },
+            { t: "§ 7 Verkehrszeichen", c: "(1) Zu beachtende Verkehrszeichen oder derartige Bodenmarkierung sind: Nr. 1 Stoppzeichen Nr. 2 Einbahnstraßenschilder Nr. 3 Wendeverbotsschilder Nr. 4 Parkverbote Nr. 5 Richtungspfeile (2) Das Fahren entgegen der Fahrtrichtung kann als gefährlicher Eingriff in den Straßenverkehr gewertet werden. (3) Nicht zu beachten sind: Nr. 1 Ampeln (nach Beachtung von §7 Abs. 4) Nr. 2 Verkehrszeichen mit Geschwindigkeitsangaben (4) An roten Ampeln ist mindestens 3 Sekunden zu warten, bis eine Weiterfahrt gestattet ist." },
+            { t: "§ 8 Überschreiten der Höchstgeschwindigkeit", c: "Die Höchstgeschwindigkeit innerorts beträgt 80 km/h. Das Überschreiten der Höchstgeschwindigkeit wird gestaffelt geahndet. (1) innerorts gilt: (a) Eine Überschreitung von 10 bis 20 km/h wird mit einem Bußgeld geahndet. (b) Eine Überschreitung von 21 bis 40 km/h wird mit einem Bußgeld geahndet. (c) Eine Überschreitung von über 41 km/h wird mit einem Bußgeld geahndet. (2) außerorts gilt: (a) Eine Überschreitung von 15 bis 30 km/h wird mit einem Bußgeld geahndet. (b) Eine Überschreitung von 31 bis 50 km/h wird mit einem Bußgeld geahndet. (c) Eine Überschreitung von 51 bis 70 km/h wird mit einem Bußgeld geahndet. (d) Eine Überschreitung von 71 km/h wird mit einer Freiheitsstrafe bestraft" },
+            { t: "§ 9 Überholen", c: "(1) Es ist links zu überholen. (2) Überholen darf nur, wer übersehen kann, dass während des ganzen Überholvorgangs jede Behinderung des Gegenverkehrs ausgeschlossen ist. Überholen darf ferner nur, wer mit wesentlich höherer Geschwindigkeit als das zu überholende Fahrzeug fährt. (3) Beim Überholen muss ein ausreichender Seitenabstand zu anderen eingehalten werden." },
+            { t: "§ 10 Vorfahrt", c: "(1) An Kreuzungen und Einmündungen hat die Vorfahrt, wer von rechts kommt. Das gilt nicht, Nr. 1 wenn die Vorfahrt durch Verkehrszeichen besonders geregelt ist, Nr. 2 wenn Fahrzeuge aus einem Feld- oder Waldweg auf eine befestigte Straße einbiegen." },
+            { t: "§ 11 Halten und Parken", c: "(1) Falschparken wird mit einer Geldstrafe geahndet. Das Halten und Parken ist unzulässig: Nr. 1 an engen und an unübersichtlichen Straßenstellen, Nr. 2 im Bereich von scharfen Kurven, Nr. 3 auf Beschleunigungs- und Verzögerungsstreifen, Nr. 4 auf Bahnübergängen, Nr. 5 an rot gekennzeichneten Bürgersteigen, Nr. 7 in gekennzeichneten Taxi-Zonen, Nr. 8 vor und hinter Kreuzungen und Einmündungen bis zu 5.00 von den Schnittpunkten der Fahrbahnkanten, Nr. 9 gegen die Fahrtrichtung. (2) Wer sein Fahrzeug verlässt oder länger als drei Minuten hält, parkt." },
+            { t: "§ 12 Warnzeichen", c: "(1) Schall- und Leuchtzeichen darf nur geben, Nr. 1 wer außerhalb geschlossener Ortschaften überholt, Nr. 2 oder wer sich und andere gefährdet sieht. (2) Der Missbrauch wird mit Geldstrafe bestraft" },
+            { t: "§ 13 Sicherheitsgurte, Schutzhelme", c: "(1) Vorgeschriebene Sicherheitsgurte müssen während der Fahrt angelegt sein. (2) Wer Krafträder oder offene drei- oder vierrädrige Kraftfahrzeuge mit einer bauartbedingten Höchstgeschwindigkeit von mehr als 20 km/h führt oder auf bzw. in ihnen mitfährt, muss während der Fahrt einen geeigneten Schutzhelm tragen. Zuwiderhandlung wird mit einer Geldstrafe von bestraft." },
+            { t: "§ 14 Garagenausfahrten", c: "Wird eine Garagenausfahrt blockiert, wird dieses Fahrzeug kostenpflichtig abgeschleppt." },
+            { t: "§ 15 Fahren unter Einfluss berauschender Mittel", c: "Ordnungswidrig handelt, wer im Straßenverkehr ein Kraftfahrzeug führt, obwohl er 0.5 ‰ oder mehr Alkohol im Blut hat. Ebenso ordnungswidrig handelt, wer ein Kraftfahrzeug unter dem Einfluss anderer berauschender Mittel führt. Der Verstoß führt zur Stilllegung des Fahrzeugs sowie dem Entzug der Fahrerlaubnis." },
+            { t: "§ 16 Haftung des Halters", c: "(1) Der Halter eines Fahrzeuges ist für sämtliche gesetzswidrige Tätigkeiten verantwortlich, welche mit dem Fahrzeug begangen werden. (2) Sollte das Fahrzeug verliehen oder als gestohlen gemeldet worden und der Täter eindeutig feststellbar sein, so ist dieser entgegen § 16 Abs. 1 zur Verantwortung zu ziehen." },
+            { t: "§ 17 Unfall", c: "(1) Wer an einem Verkehrsunfall beteiligt ist, hat Nr. 1 unverzüglich anzuhalten, Nr. 2 den Unfallort abzusichern bzw. sein Fahrzeug bei geringfügigem Schaden unverzüglich beiseite zu fahren, Nr. 3 sich über die Unfallfolgen zu vergewissern, Nr. 4 Verletzten zu helfen, Nr. 5 solange am Unfallort zu bleiben, bis zugunsten der anderen Beteiligten und Geschädigten die Feststellung der Person, des Fahrzeugs und der Art der Beteiligung durch eigene Anwesenheit ermöglicht wurde. (2) Ein Zuwiderhandeln wird mit Geldstrafe bestraft." },
+            { t: "§18 Veränderung des Fahrzeuges", c: "(1) Vollständige Verdunkelung der Fahrzeugscheiben ist verboten (1.1) Bei Verstoß gegen die zulässige Scheibentönung von über 60% beträgt wird mit Geldstrafe bestraft. (1.3) Farbliche Scheinwerfer Beleuchtung werden mit einem Bußgeld geahndet. Ausgenommen Xenonscheinwerfer. Scheinwerferbeleuchtungen können ausschließlich vom TÜV genehmigt werden. Hierbei wird stets die Verkehrssicherheit anderer Verkehrsteilnehmer sowie des Betroffenen mit einbezogen. Bei wiederholtem Verstoß kann das Bußgeld angehoben werden. (1.4) Unterbodenbeleuchtung bei widerrechtlicher Verwendung von Unterbodenbeleuchtung wird ein Bußgeld fällig. (1.5) Aufklärung zur Strafbarkeit jedes Unternehmen, das einen solchen Service anbietet, darf die oben genannten Sachen bzw. Anbauten zwar verbauen jedoch gilt hier die Aufklärungs und belehrungspflicht gegenüber den Kunden. (1.6) Sollte sich ein Unternehmer nachweislich dieser Verpflichtung zur Belehrung einer möglichen Strafbarkeit durch anbauen dieser Anbauten durch Wunsch des Kunden sich entziehen so droht ihm bei Nachweis genau die gleiche Strafe wie den betroffenen selbst. (2) Bei wiederholter Tat wird das Bußgeld im Rahmen des Ermessens verdoppelt." },
+            { t: "§ 19 Sonderrechte", c: "(1) Von den Vorschriften dieser Verordnung sind die Feuerwehr, der Katastrophenschutz, die Polizei und der Zolldienst befreit, soweit das zur Erfüllung hoheitlicher Aufgaben dringend geboten ist. (2) Fahrzeuge des Rettungsdienstes sind von den Vorschriften dieser Verordnung befreit, wenn höchste Eile geboten ist, um Menschenleben zu retten oder schwere gesundheitliche Schäden abzuwenden. (3) Die Sonderrechte dürfen nur unter gebührender Berücksichtigung der öffentlichen Sicherheit und Ordnung ausgeübt werden. (4) Der Missbrauch ist Strafbar" },
+            { t: "§20 Blinklicht und Signalhorn", c: "(1) Blinklicht zusammen mit dem Einsatzhorn darf nur, von Polizei und Rettungsdienst, verwendet werden, wenn höchste Eile geboten ist, um Menschenleben zu retten oder schwere gesundheitliche Schäden abzuwenden, eine Gefahr für die öffentliche Sicherheit oder Ordnung abzuwenden, flüchtige Personen zu verfolgen oder bedeutende Sachwerte zu erhalten. Es ordnet an: „Alle übrigen Verkehrsteilnehmer haben sofort freie Bahn zu schaffen“. (2) Blaues Blinklicht allein darf nur von den damit ausgerüsteten Fahrzeugen und nur zur Warnung an Unfall- oder sonstigen Einsatzstellen, bei Einsatzfahrten oder bei der Begleitung von Fahrzeugen oder von geschlossenen Verbänden verwendet werden. (3) Gelbes Blinklicht warnt vor Gefahren. Es kann ortsfest oder von Fahrzeugen aus verwendet werden. Die Verwendung von Fahrzeugen aus ist nur zulässig, um vor Arbeits- oder Unfallstellen, vor ungewöhnlich langsam fahrenden Fahrzeugen oder vor Fahrzeugen mit ungewöhnlicher Breite oder Länge oder mit ungewöhnlich breiter oder langer Ladung zu warnen. (4) Der Missbrauch ist Strafbar" },
+            { t: "§ 21 Entzug der Fahrerlaubnis", c: "(1) Erweist sich jemand als ungeeignet oder nicht befähigt ein Kraftfahrzeug zu führen, so wird ihm der Führerschein entzogen. Wird jemandem der Führerschein durch die Exekutive entzogen, ohne das eine entsprechende Anweisung der Judikative vorliegt, ist er für 3 Tage vom Ablegen des Führerscheins ausgeschlossen. Mit entsprechender Anweisung der Judikative kann dies, bei entsprechender Begründung, auf bis zu zwei Wochen erweitert werden. Jemand erweist sich insbesondere unfähig ein Fahrzeug zu führen, wenn eines der folgenden Gesetze bei ihm Anwendung findet: (a) §8 Abs. 1 Pkt. c StVO (b) §8 Abs. 2 Pkt. c StVO (c) §8 Abs. 2 Pkt. d StVO (2) Entspricht die körperliche oder geistige Verfassung des Fahrzeugführers zum Zeitpunkt einer polizeilichen Kontrolle nicht dem erforderlichen Maß, so kann ihm die Fahrerlaubnis entzogen werden. Kriterien für eine nicht ausreichende körperliche oder geistige Verfassung sind: Nr. 1 0.5 ‰ oder mehr Alkohol im Blut Nr. 2 Rückstände von Betäubungsmitteln oder anderer berauschender Mittel im Blut Nr. 3 Körperliche Beeinträchtigungen Nr. 4 Teilnahme an illegalen Straßenrennen Nr. 5 unerlaubtes Entfernen vom Unfallort, sofern dem Täter ersichtlich sein kann, dass Menschen verletzt wurden oder ein bedeutender Schaden an fremden Sachen entstanden ist. (3) Nach mehrfachen Auffällig Werden kann der Führerschein nach Ermessen eingezogen werden." },
+            { t: "§ 22 Hauptuntersuchung", c: "Jeder Halter von Kraftfahrzeugen ist dazu verpflichtet, regelmäßig eine gesetzlich vorgeschriebene Hauptuntersuchung gemäß den festgelegten Bestimmungen durchführen zu lassen. Die Prüfung erfolgt in den hierfür vorgesehenen Prüfstellen." },
+            { t: "§24 Notwendigkeit einer Zulassung", c: "(1) Ein Kraftfahrzeug und seine Anhänger dürfen von der das Fahrzeug führenden Person auf öffentlichen Straßen nur in Betrieb gesetzt werden, wenn sie zum Verkehr zugelassen sind. Die Zulassung wird auf Antrag erteilt, wenn das Fahrzeug einem genehmigten Typ entspricht oder für das Fahrzeug eine Fahrzeug-Einzelgenehmigung erteilt ist. (2) Einer Zulassung bedürfen nicht folgende Arten von Kraftfahrzeugen: a) selbstfahrende Arbeitsmaschinen und Stapler, b) einachsige Zugmaschinen, wenn sie nur für land- oder forstwirtschaftliche Zwecke verwendet werden, c) Leichtkrafträder, d) zwei- oder dreirädrige Kleinkrafträder, e) motorisierte Krankenfahrstühle. folgende Arten von Anhängern: a) Anhänger in land- oder forstwirtschaftlichen Betrieben, wenn die Anhänger nur für land- oder forstwirtschaftliche Zwecke verwendet und mit einer Geschwindigkeit von nicht mehr als 25 Kilometern pro Stunde hinter Zugmaschinen oder selbstfahrenden Arbeitsmaschinen mitgeführt werden, b) fahrbare Baubuden und Toilettenwagen, die von Kraftfahrzeugen mit einer Geschwindigkeit von nicht mehr als 25 Kilometern pro Stunde mitgeführt werden, c) Arbeitsmaschinen, d) Spezialanhänger zur Beförderung von Sportgeräten, von Tieren für Sportzwecke oder von Rettungsbooten der Feuerwehr, des Rettungsdienstes und des Zivil- und Katastrophenschutzes, wenn die Anhänger ausschließlich für solche Beförderungen verwendet werden, e) einachsige Anhänger hinter Krafträdern, Kleinkrafträdern und motorisierten Krankenfahrstühlen, f) Anhänger für den Einsatzzweck der Feuerwehren und des Zivil- und Katastrophenschutzes, g) land- oder forstwirtschaftliche Arbeitsgeräte, h) hinter land- oder forstwirtschaftlichen einachsigen Zug- oder Arbeitsmaschinen mitgeführte Sitzkarren. (3) Der Halter darf die Inbetriebsetzung eines nach Absatz 1 zulassungspflichtigen Fahrzeuges nur anordnen oder zulassen, wenn das Fahrzeug zugelassen ist." },
+            { t: "§ 25 Sonstige Pflichten von Fahrzeugführenden", c: "(1) Wer ein Fahrzeug führt, ist dafür verantwortlich, dass seine Sicht und das Gehör nicht durch die Besetzung, Tiere, die Ladung, Geräte oder den Zustand des Fahrzeugs beeinträchtigt werden. Wer ein Fahrzeug führt, hat zudem dafür zu sorgen, dass das Fahrzeug, der Zug, das Gespann sowie die Ladung und die Besetzung vorschriftsmäßig sind und dass die Verkehrssicherheit des Fahrzeugs durch die Ladung oder die Besetzung nicht leidet. Ferner ist dafür zu sorgen, dass die vorgeschriebenen Kennzeichen stets gut lesbar sind. Vorgeschriebene Beleuchtungseinrichtungen müssen an Kraftfahrzeugen und ihren Anhängern auch am Tage vorhanden und betriebsbereit sein. (1a) Wer ein Fahrzeug führt, darf ein elektronisches Gerät, das der Kommunikation, Information oder Organisation dient oder zu dienen bestimmt ist, nur benutzen, wenn hierfür das Gerät weder aufgenommen noch gehalten wird" }
+        ];
+
+        function searchStVO() {
+            const query = document.getElementById('stvo_search').value.toLowerCase();
+            const resultsBox = document.getElementById('stvo_results');
+            resultsBox.innerHTML = '';
+            
+            if (query.length < 2) {
+                resultsBox.classList.add('hidden');
+                return;
+            }
+
+            const filtered = stvoGesetze.filter(g => g.t.toLowerCase().includes(query) || g.c.toLowerCase().includes(query));
+            
+            if (filtered.length === 0) {
+                resultsBox.innerHTML = '<p class="text-white/40 text-sm italic">Keine passenden Paragrafen gefunden.</p>';
+            } else {
+                filtered.forEach(g => {
+                    const regex = new RegExp(`(${query})`, "gi");
+                    const markedContent = g.c.replace(regex, `<span class="bg-gold/30 text-gold font-bold px-1 rounded">$1</span>`);
+                    resultsBox.innerHTML += `
+                        <div class="bg-white/5 p-4 rounded-lg border border-white/10 hover:border-gold/30 transition duration-300">
+                            <h4 class="font-bold text-gold mb-2">${g.t}</h4>
+                            <p class="text-sm text-white/70 leading-relaxed">${markedContent}</p>
+                        </div>`;
+                });
+            }
+            resultsBox.classList.remove('hidden');
+        }
+
         function checkLogin() {
             const user = document.getElementById('login-user').value;
             const token = document.getElementById('login-token').value;
@@ -477,12 +565,17 @@
             const limit = parseInt(document.getElementById('calc_limit').value);
             const rawSpeed = parseInt(document.getElementById('calc_speed').value);
             const resultBox = document.getElementById('calc_result');
+            
             if (!rawSpeed) { resultBox.classList.add('hidden'); return; }
             resultBox.classList.remove('hidden');
+            
             let tolerance = rawSpeed <= 100 ? 3 : Math.ceil(rawSpeed * 0.03);
             const nettoSpeed = rawSpeed - tolerance;
             const diff = nettoSpeed - limit;
+            
+            document.getElementById('res_tol').innerText = `- ${tolerance} km/h`;
             document.getElementById('res_netto').innerText = `${nettoSpeed} km/h`;
+            
             let fine = 0; let ban = "";
             if (diff > 0) {
                 if (diff <= 10) fine = 500;
@@ -491,20 +584,34 @@
                 else if (diff <= 50) { fine = 5000; ban = "1 Woche Fahrverbot"; }
                 else { fine = 10000; ban = "Entzug / MPU"; }
             }
+            
             document.getElementById('res_money').innerText = `${fine.toLocaleString('de-DE')}.00 €`;
             const banBox = document.getElementById('res_ban_box');
-            if (ban) { banBox.classList.remove('hidden'); document.getElementById('res_ban').innerText = ban; } 
-            else { banBox.classList.add('hidden'); }
+            if (ban) { 
+                banBox.classList.remove('hidden'); 
+                document.getElementById('res_ban').innerText = ban;
+            } else { 
+                banBox.classList.add('hidden');
+            }
         }
 
         function calculateAlcohol() {
+            const weight = parseInt(document.getElementById('alc_weight').value) || 80;
             const beer = parseInt(document.getElementById('alc_beer').value) || 0;
             const shot = parseInt(document.getElementById('alc_shot').value) || 0;
-            let promille = (beer * 0.35) + (shot * 0.22);
+            
+            // Widmark-Formel Näherung
+            // 0,5l Bier = ca. 20g Alkohol
+            // 4cl Schnaps = ca. 10.5g Alkohol
+            const alcoholGrams = (beer * 20) + (shot * 10.5);
+            // Reduktionsfaktor Männer ~0.7, Frauen ~0.6 -> Durchschnitt 0.65 für RP
+            let promille = alcoholGrams / (weight * 0.65);
             promille = Math.max(0, promille).toFixed(2);
+            
             document.getElementById('res_promille').innerText = promille + " ‰";
             const badge = document.getElementById('alc_badge');
             const law = document.getElementById('alc_law');
+            
             if (promille < 0.3) {
                 badge.className = "px-2 py-1 bg-green-500/20 text-green-500 text-[10px] font-bold rounded uppercase";
                 badge.innerText = "Nüchtern"; law.innerText = "Fahrtüchtig.";
@@ -536,15 +643,40 @@
         }
 
         function addVehicle(type) {
-            const body = new fabric.Rect({ width: type==='car'?60:100, height: type==='car'?30:45, fill: '#d4af37', stroke: '#000', strokeWidth: 2, rx: 5 });
-            canvas.add(new fabric.Group([body], { left: 100, top: 100 }));
+            let group;
+            if (type === 'car') {
+                const body = new fabric.Rect({ width: 60, height: 30, fill: '#003366', rx: 5, stroke: '#fff', strokeWidth: 1 });
+                const roof = new fabric.Rect({ width: 25, height: 26, left: 15, top: 2, fill: '#1a1a1a', rx: 3 });
+                const light = new fabric.Rect({ width: 4, height: 10, left: 25, top: 10, fill: '#4d94ff' });
+                group = new fabric.Group([body, roof, light], { left: 100, top: 100 });
+            } else if (type === 'truck') {
+                const cab = new fabric.Rect({ width: 30, height: 35, fill: '#d4af37', rx: 3, stroke: '#fff', strokeWidth: 1 });
+                const trailer = new fabric.Rect({ width: 90, height: 40, left: 35, top: -2.5, fill: '#e6e6e6', rx: 2, stroke: '#000', strokeWidth: 1 });
+                group = new fabric.Group([cab, trailer], { left: 100, top: 100 });
+            }
+            canvas.add(group);
         }
+
+        function addRoundabout() {
+            const outer = new fabric.Circle({ radius: 80, fill: 'transparent', stroke: 'white', strokeWidth: 3, strokeDashArray: [10, 10], originX: 'center', originY: 'center' });
+            const inner = new fabric.Circle({ radius: 30, fill: '#333', stroke: '#d4af37', strokeWidth: 2, originX: 'center', originY: 'center' });
+            const group = new fabric.Group([outer, inner], { left: 200, top: 200 });
+            canvas.add(group);
+        }
+
         function addArrow() {
             const arrow = new fabric.Path('M 0 0 L 50 0 M 50 0 L 40 -10 M 50 0 L 40 10', { stroke: '#fff', strokeWidth: 3, fill: '', left: 100, top: 100 });
             canvas.add(arrow);
         }
-        function addText() { canvas.add(new fabric.IText('Text...', { left: 100, top: 100, fill: '#fff', fontSize: 20 })); }
-        function deleteObject() { canvas.remove(canvas.getActiveObject()); }
+
+        function addText() { 
+            canvas.add(new fabric.IText('Text...', { left: 100, top: 100, fill: '#fff', fontSize: 20 }));
+        }
+
+        function deleteObject() { 
+            canvas.remove(canvas.getActiveObject());
+        }
+
         function downloadSkizze() {
             const link = document.createElement('a');
             link.download = 'Skizze.png';
@@ -555,27 +687,99 @@
         async function generatePDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
+            
+            // Get Values
             const nr = document.getElementById('v_nr').value || "N/A";
+            const datum = document.getElementById('v_datum').value || "N/A";
+            const ort = document.getElementById('v_ort').value || "N/A";
+            const b1 = document.getElementById('v_b1').value || "N/A";
+            const b2 = document.getElementById('v_b2').value || "N/A";
+            const zeugen = document.getElementById('v_zeugen').value || "N/A";
+            const ursache = document.getElementById('v_ursache').value || "N/A";
+            const wetter = document.getElementById('v_wetter').value || "N/A";
             const sv = document.getElementById('v_sachverhalt').value || "N/A";
             const links = document.getElementById('v_links').value;
 
-            doc.setFillColor(0, 51, 102); doc.rect(0, 0, 210, 40, 'F');
-            doc.setTextColor(255, 255, 255); doc.setFontSize(22);
-            doc.text("VERKEHRSUNFALLPROTOKOLL", 20, 25);
-            doc.setTextColor(0, 0, 0); doc.setFontSize(10);
-            doc.text(`Aktenzeichen: ${nr}`, 20, 55);
-            doc.text(`Ort/Zeit: ${document.getElementById('v_datum').value}`, 20, 62);
-            doc.text("A. BETEILIGTE", 20, 80);
-            doc.text(`B01: ${document.getElementById('v_b1').value}`, 20, 87);
-            doc.text(`B02: ${document.getElementById('v_b2').value}`, 20, 95);
-            doc.text("B. SACHVERHALT", 20, 115);
-            doc.text(doc.splitTextToSize(sv, 170), 20, 122);
-            
+            // Header Banner
+            doc.setFillColor(0, 51, 102); // Police Blue
+            doc.rect(0, 0, 210, 35, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(18);
+            doc.text("POLIZEIDIREKTION DRESDEN", 20, 16);
+            doc.setFontSize(12);
+            doc.setTextColor(212, 175, 55); // Gold
+            doc.text("DEZERNAT VERKEHR - VERKEHRSUNFALLPROTOKOLL", 20, 25);
+
+            // Reset Default Formatting
+            doc.setTextColor(0, 0, 0);
+
+            // A. Allgemeine Daten
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text("A. ALLGEMEINE DATEN", 20, 48);
+            doc.setDrawColor(212, 175, 55);
+            doc.setLineWidth(0.5);
+            doc.line(20, 50, 190, 50);
+
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "normal");
+            doc.text(`Aktenzeichen / VNR:`, 20, 58); doc.setFont("helvetica", "bold"); doc.text(`${nr}`, 65, 58); doc.setFont("helvetica", "normal");
+            doc.text(`Einsatzzeitpunkt:`, 20, 65); doc.text(`${datum}`, 65, 65);
+            doc.text(`Unfallort / GPS:`, 20, 72); doc.text(`${ort}`, 65, 72);
+            doc.text(`Hauptursache:`, 110, 58); doc.text(`${ursache}`, 140, 58);
+            doc.text(`Witterung:`, 110, 65); doc.text(`${wetter}`, 140, 65);
+
+            // B. Beteiligte
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text("B. BETEILIGTE & ZEUGEN", 20, 85);
+            doc.line(20, 87, 190, 87);
+
+            doc.setFontSize(10);
+            doc.text("Beteiligter 01:", 20, 95);
+            doc.setFont("helvetica", "normal");
+            doc.text(doc.splitTextToSize(b1, 170), 20, 100);
+
+            doc.setFont("helvetica", "bold");
+            doc.text("Beteiligter 02:", 20, 120);
+            doc.setFont("helvetica", "normal");
+            doc.text(doc.splitTextToSize(b2, 170), 20, 125);
+
+            doc.setFont("helvetica", "bold");
+            doc.text("Zeugen:", 20, 145);
+            doc.setFont("helvetica", "normal");
+            doc.text(doc.splitTextToSize(zeugen, 170), 20, 150);
+
+            // C. Sachverhalt
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text("C. SACHVERHALTSDARSTELLUNG", 20, 170);
+            doc.line(20, 172, 190, 172);
+
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "normal");
+            doc.text(doc.splitTextToSize(sv, 170), 20, 180);
+
+            // D. Beweismittel (If provided)
             if(links) {
-                doc.text("D. BEWEISMITTEL", 20, 180);
-                doc.setFontSize(8); doc.setTextColor(0, 102, 204);
-                doc.text(doc.splitTextToSize(links, 170), 20, 187);
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "bold");
+                doc.text("D. DIGITALE BEWEISMITTEL", 20, 240);
+                doc.line(20, 242, 190, 242);
+                
+                doc.setFontSize(8);
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(0, 102, 204);
+                doc.text(doc.splitTextToSize(links, 170), 20, 248);
             }
+
+            // Footer
+            doc.setFontSize(8);
+            doc.setTextColor(150, 150, 150);
+            doc.text(`PK 4 Dresden - Dezernat Verkehr | Generiert über Internes VUK-System`, 105, 290, null, null, "center");
+
+            // Save PDF
             doc.save(`VUK_Protokoll_${nr}.pdf`);
         }
     </script>
