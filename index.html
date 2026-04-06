@@ -10,18 +10,30 @@
         Verwaltungsportal | Dez. Verkehr Dresden
     </title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script 
+        src="https://cdn.tailwindcss.com"
+    ></script>
+    
     <link 
         href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
         rel="stylesheet"
     >
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script 
+        src="https://unpkg.com/aos@2.3.1/dist/aos.js"
+    ></script>
+    
     <link 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
         rel="stylesheet"
     >
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+    
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    ></script>
+    
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"
+    ></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap');
@@ -40,6 +52,9 @@
             min-height: 100vh;
         }
 
+        /* ------------------------------------------ */
+        /* LOGIN OVERLAY                              */
+        /* ------------------------------------------ */
         #login-overlay {
             position: fixed;
             top: 0; 
@@ -76,6 +91,9 @@
             letter-spacing: 1px;
         }
 
+        /* ------------------------------------------ */
+        /* HINTERGRUND                                */
+        /* ------------------------------------------ */
         .fullscreen-bg {
             position: fixed;
             top: 0; 
@@ -94,28 +112,13 @@
             filter: blur(5px);
         }
 
+        /* ------------------------------------------ */
+        /* NAVIGATION                                 */
+        /* ------------------------------------------ */
         .glass-nav {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .text-glow-gold {
-            text-shadow: 0 0 10px var(--gold-glow);
-            color: var(--gold);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
         }
 
         .nav-btn {
@@ -143,6 +146,27 @@
             box-shadow: 0 0 10px var(--gold);
         }
 
+        /* ------------------------------------------ */
+        /* UI ELEMENTE                                */
+        /* ------------------------------------------ */
+        .text-glow-gold {
+            text-shadow: 0 0 10px var(--gold-glow);
+            color: var(--gold);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
         .page { 
             display: none; 
         }
@@ -153,11 +177,22 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
-        input, textarea, select {
+        /* ------------------------------------------ */
+        /* FORMULARE                                  */
+        /* ------------------------------------------ */
+        input, 
+        textarea, 
+        select {
             background: rgba(255, 255, 255, 0.05) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
             color: white !important;
@@ -172,12 +207,27 @@
             font-weight: bold;
         }
 
-        input:focus, textarea:focus, select:focus {
+        input:focus, 
+        textarea:focus, 
+        select:focus {
             border-color: var(--gold) !important;
             outline: none;
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
         }
 
+        label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            display: block;
+            font-weight: 700;
+        }
+
+        /* ------------------------------------------ */
+        /* BUTTONS                                    */
+        /* ------------------------------------------ */
         .btn-gold {
             background: linear-gradient(135deg, var(--gold) 0%, #b38f2d 100%);
             color: black;
@@ -189,16 +239,6 @@
         .btn-gold:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 20px var(--gold-glow);
-        }
-        
-        label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold);
-            margin-bottom: 0.4rem;
-            display: block;
-            font-weight: 700;
         }
 
         .tool-icon {
@@ -220,16 +260,41 @@
             border-color: var(--gold); 
             color: var(--gold); 
         }
-        
-        #stvo_results::-webkit-scrollbar { width: 6px; }
-        #stvo_results::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        #stvo_results::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        /* ------------------------------------------ */
+        /* SCROLLBARS                                 */
+        /* ------------------------------------------ */
+        #stvo_results::-webkit-scrollbar { 
+            width: 6px; 
+        }
+        #stvo_results::-webkit-scrollbar-track { 
+            background: rgba(255,255,255,0.05); 
+            border-radius: 10px; 
+        }
+        #stvo_results::-webkit-scrollbar-thumb { 
+            background: var(--gold); 
+            border-radius: 10px; 
+        }
+
+        .tools-section {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .tools-section::-webkit-scrollbar { 
+            width: 4px; 
+        }
+        .tools-section::-webkit-scrollbar-thumb { 
+            background: rgba(212, 175, 55, 0.5); 
+            border-radius: 4px; 
+        }
     </style>
 </head>
 <body class="tracking-tight">
 
     <div id="login-overlay">
         <div class="login-card">
+            
             <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-gold/30">
                 <i class="fas fa-id-card text-gold text-2xl"></i>
             </div>
@@ -243,6 +308,7 @@
             </p>
             
             <div class="space-y-4 text-left">
+                
                 <div>
                     <label>Kennung</label>
                     <input 
@@ -273,11 +339,13 @@
                 <p id="login-error" class="error-msg text-center">
                     Autorisierung Fehlgeschlagen
                 </p>
+                
             </div>
         </div>
     </div>
 
     <div id="main-wrapper" style="display: none;">
+        
         <div class="fullscreen-bg">
             <img 
                 src="https://media.discordapp.net/attachments/1368571903576506450/1487948981127483454/image.png?format=webp" 
@@ -287,6 +355,7 @@
 
         <nav class="fixed top-0 left-0 w-full z-50 glass-nav">
             <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 bg-white/10 rounded flex items-center justify-center border border-gold/30">
                         <i class="fas fa-shield-alt text-gold"></i>
@@ -302,12 +371,47 @@
                 </div>
 
                 <div class="flex gap-6">
-                    <button onclick="showPage('home')" id="btn-home" class="nav-btn active">Dashboard</button>
-                    <button onclick="showPage('mitglieder')" id="btn-mitglieder" class="nav-btn">Personal</button>
-                    <button onclick="showPage('bericht')" id="btn-bericht" class="nav-btn">VUK-Protokoll</button>
-                    <button onclick="showPage('skizze')" id="btn-skizze" class="nav-btn">Skizzen-Tool</button>
-                    <button onclick="showPage('archiv')" id="btn-archiv" class="nav-btn">Zentrale</button>
+                    <button 
+                        onclick="showPage('home')" 
+                        id="btn-home" 
+                        class="nav-btn active"
+                    >
+                        Dashboard
+                    </button>
+                    
+                    <button 
+                        onclick="showPage('mitglieder')" 
+                        id="btn-mitglieder" 
+                        class="nav-btn"
+                    >
+                        Personal
+                    </button>
+                    
+                    <button 
+                        onclick="showPage('bericht')" 
+                        id="btn-bericht" 
+                        class="nav-btn"
+                    >
+                        VUK-Protokoll
+                    </button>
+                    
+                    <button 
+                        onclick="showPage('skizze')" 
+                        id="btn-skizze" 
+                        class="nav-btn"
+                    >
+                        Skizzen-Tool
+                    </button>
+                    
+                    <button 
+                        onclick="showPage('archiv')" 
+                        id="btn-archiv" 
+                        class="nav-btn"
+                    >
+                        Zentrale
+                    </button>
                 </div>
+                
             </div>
         </nav>
 
@@ -324,6 +428,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="fade-up">
+                    
                     <div class="glass-card p-8 border-l-4 border-l-gold">
                         <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-gold">
                             Dezernatsleitung
@@ -361,6 +466,7 @@
                             </span>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -370,46 +476,65 @@
                 </h2>
  
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
                     <div class="glass-card p-6 text-center group">
                         <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20">
                             <i class="fas fa-user-shield text-gold text-xl"></i>
                         </div>
-                        <span class="text-[10px] text-gold font-bold uppercase tracking-widest">DD 4/12</span>
+                        <span class="text-[10px] text-gold font-bold uppercase tracking-widest">
+                            DD 4/12
+                        </span>
                         <h3 class="text-xl font-bold">Lukas Stolte</h3>
-                        <p class="text-xs text-white/40 mt-1 uppercase">Leitung Dez. Verkehr</p>
+                        <p class="text-xs text-white/40 mt-1 uppercase">
+                            Leitung Dez. Verkehr
+                        </p>
                     </div>
                     
                     <div class="glass-card p-6 text-center group">
                         <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20">
                             <i class="fas fa-user-shield text-gold text-xl"></i>
                         </div>
-                        <span class="text-[10px] text-gold font-bold uppercase tracking-widest">DD 4/26</span>
+                        <span class="text-[10px] text-gold font-bold uppercase tracking-widest">
+                            DD 4/26
+                        </span>
                         <h3 class="text-xl font-bold">Lenny Scharfenberg</h3>
-                        <p class="text-xs text-white/40 mt-1 uppercase">Stellv. Leitung</p>
+                        <p class="text-xs text-white/40 mt-1 uppercase">
+                            Stellv. Leitung
+                        </p>
                     </div>
                     
                     <div class="glass-card p-6 text-center group">
                         <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10">
                             <i class="fas fa-user-tag text-white/60 text-xl"></i>
                         </div>
-                        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">DD 4/38</span>
+                        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">
+                            DD 4/38
+                        </span>
                         <h3 class="text-xl font-bold">Felix Schwarz</h3>
-                        <p class="text-xs text-white/40 mt-1 uppercase">Polizeihauptkommissar A12</p>
+                        <p class="text-xs text-white/40 mt-1 uppercase">
+                            Polizeihauptkommissar A12
+                        </p>
                     </div>
                     
                     <div class="glass-card p-6 text-center group">
                         <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10">
                             <i class="fas fa-user-tag text-white/60 text-xl"></i>
                         </div>
-                        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">DD 4/42</span>
+                        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">
+                            DD 4/42
+                        </span>
                         <h3 class="text-xl font-bold">Mark Walker</h3>
-                        <p class="text-xs text-white/40 mt-1 uppercase">Polizeihauptkommissar A12</p>
+                        <p class="text-xs text-white/40 mt-1 uppercase">
+                            Polizeihauptkommissar A12
+                        </p>
                     </div>
+                    
                 </div>
             </div>
 
             <div id="page-bericht" class="page">
                 <div class="glass-card p-10 max-w-5xl mx-auto">
+                    
                     <div class="flex justify-between items-start mb-10 border-b border-white/10 pb-6">
                         <div>
                             <h2 class="text-3xl font-black uppercase italic">VUK Protokoll</h2>
@@ -419,6 +544,7 @@
                     </div>
                     
                     <div class="space-y-8">
+                        
                         <div>
                             <h4 class="text-xs font-black text-white/30 uppercase tracking-[0.3em] mb-4 border-l-2 border-gold pl-2">
                                 A. Allgemeine Daten
@@ -426,19 +552,38 @@
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div>
                                     <label>Vorgangsnummer (VNR)</label>
-                                    <input type="text" id="v_nr" class="w-full font-mono text-sm" placeholder="VNR-2026-XXXX">
+                                    <input 
+                                        type="text" 
+                                        id="v_nr" 
+                                        class="w-full font-mono text-sm" 
+                                        placeholder="VNR-2026-XXXX"
+                                    >
                                 </div>
                                 <div>
                                     <label>Einsatzdatum & Zeit</label>
-                                    <input type="datetime-local" id="v_datum" class="w-full text-sm">
+                                    <input 
+                                        type="datetime-local" 
+                                        id="v_datum" 
+                                        class="w-full text-sm"
+                                    >
                                 </div>
                                 <div>
                                     <label>Aufnehmender Beamter</label>
-                                    <input type="text" id="v_beamter" class="w-full text-sm" placeholder="Name, Dienstgrad (DD 4/XX)">
+                                    <input 
+                                        type="text" 
+                                        id="v_beamter" 
+                                        class="w-full text-sm" 
+                                        placeholder="Name, Dienstgrad (DD 4/XX)"
+                                    >
                                 </div>
                                 <div class="md:col-span-3">
                                     <label>Exakter Unfallort (Straße, Hausnr., Kreuzung)</label>
-                                    <input type="text" id="v_ort" class="w-full" placeholder="Z.B. Legion Square / Alta Street">
+                                    <input 
+                                        type="text" 
+                                        id="v_ort" 
+                                        class="w-full" 
+                                        placeholder="Z.B. Legion Square / Alta Street"
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -450,15 +595,30 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="bg-red-900/10 p-4 rounded-xl border border-red-500/20">
                                     <label class="text-red-400">Beteiligter 01 (Hauptverursacher)</label>
-                                    <textarea id="v_b1" rows="3" class="w-full" placeholder="Name, Personalien, Fahrzeugtyp, Kennzeichen..."></textarea>
+                                    <textarea 
+                                        id="v_b1" 
+                                        rows="3" 
+                                        class="w-full" 
+                                        placeholder="Name, Personalien, Fahrzeugtyp, Kennzeichen..."
+                                    ></textarea>
                                 </div>
                                 <div class="bg-blue-900/10 p-4 rounded-xl border border-blue-500/20">
                                     <label class="text-blue-400">Beteiligter 02 (Geschädigter)</label>
-                                    <textarea id="v_b2" rows="3" class="w-full" placeholder="Name, Personalien, Fahrzeugtyp, Kennzeichen..."></textarea>
+                                    <textarea 
+                                        id="v_b2" 
+                                        rows="3" 
+                                        class="w-full" 
+                                        placeholder="Name, Personalien, Fahrzeugtyp, Kennzeichen..."
+                                    ></textarea>
                                 </div>
                                 <div class="md:col-span-2">
                                     <label>Zeugenaussagen (Name & Kontakt)</label>
-                                    <input type="text" id="v_zeugen" class="w-full" placeholder="Zeuge 1: Max Mustermann (Tel: 555-0192) - Aussage liegt bei.">
+                                    <input 
+                                        type="text" 
+                                        id="v_zeugen" 
+                                        class="w-full" 
+                                        placeholder="Zeuge 1: Max Mustermann (Tel: 555-0192) - Aussage liegt bei."
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -470,7 +630,10 @@
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                                 <div>
                                     <label>Hauptursache</label>
-                                    <select id="v_ursache" class="w-full">
+                                    <select 
+                                        id="v_ursache" 
+                                        class="w-full"
+                                    >
                                         <option value="Vorfahrtsmissachtung">Vorfahrtsmissachtung</option>
                                         <option value="Überhöhte Geschwindigkeit">Überhöhte Geschwindigkeit</option>
                                         <option value="Einfluss berauschender Mittel">Einfluss berauschender Mittel</option>
@@ -481,7 +644,10 @@
                                 </div>
                                 <div>
                                     <label>Witterung</label>
-                                    <select id="v_wetter" class="w-full">
+                                    <select 
+                                        id="v_wetter" 
+                                        class="w-full"
+                                    >
                                         <option value="Trocken, sonnig">Trocken, sonnig</option>
                                         <option value="Nass, Regen">Nass, Regen</option>
                                         <option value="Nebel, schlechte Sicht">Nebel, schlechte Sicht</option>
@@ -490,7 +656,10 @@
                                 </div>
                                 <div>
                                     <label>Straßenzustand</label>
-                                    <select id="v_strasse" class="w-full">
+                                    <select 
+                                        id="v_strasse" 
+                                        class="w-full"
+                                    >
                                         <option value="Asphalt (griffig)">Asphalt (griffig)</option>
                                         <option value="Asphalt (beschädigt)">Asphalt (beschädigt)</option>
                                         <option value="Schotter / Unbefestigt">Schotter / Unbefestigt</option>
@@ -499,7 +668,12 @@
                             </div>
                             <div>
                                 <label>Objektive Sachverhaltsschilderung</label>
-                                <textarea id="v_sachverhalt" rows="6" class="w-full" placeholder="Chronologischer Ablauf des Unfalls aus polizeilicher Sicht..."></textarea>
+                                <textarea 
+                                    id="v_sachverhalt" 
+                                    rows="6" 
+                                    class="w-full" 
+                                    placeholder="Chronologischer Ablauf des Unfalls aus polizeilicher Sicht..."
+                                ></textarea>
                             </div>
                         </div>
 
@@ -508,7 +682,12 @@
                                 <i class="fas fa-camera mr-2"></i> D. Digitale Beweismittel
                             </h4>
                             <label>Akten-Links (Dashcam, Tatort-Fotos, Skizzen-URL)</label>
-                            <textarea id="v_links" rows="2" class="w-full text-xs font-mono" placeholder="https://..."></textarea>
+                            <textarea 
+                                id="v_links" 
+                                rows="2" 
+                                class="w-full text-xs font-mono" 
+                                placeholder="https://..."
+                            ></textarea>
                         </div>
 
                         <button 
@@ -517,69 +696,115 @@
                         >
                             <i class="fas fa-file-pdf"></i> Offizielles PDF-Protokoll Generieren
                         </button>
+                        
                     </div>
                 </div>
             </div>
 
             <div id="page-skizze" class="page">
-                <h2 class="text-4xl font-black uppercase italic mb-2 text-center">Taktische Ermittlungs-Skizze</h2>
-                <p class="text-center text-white/40 mb-8 text-sm">Nutze die Werkzeuge, um den Unfallort maßstabsgetreu zu rekonstruieren.</p>
+                <h2 class="text-4xl font-black uppercase italic mb-2 text-center">
+                    Taktische Ermittlungs-Skizze
+                </h2>
+                <p class="text-center text-white/40 mb-8 text-sm">
+                    Nutze die Werkzeuge, um den Unfallort maßstabsgetreu zu rekonstruieren.
+                </p>
                 
                 <div class="glass-card p-6 flex flex-col lg:flex-row gap-6">
                     
-                    <div class="w-full lg:w-64 flex flex-wrap lg:flex-col gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
+                    <div class="w-full lg:w-72 flex flex-col gap-4 bg-black/40 p-4 rounded-xl border border-white/5 tools-section">
                         
                         <div>
-                            <label class="text-[10px] text-gold font-bold mb-2">Fahrzeuge</label>
+                            <label class="text-[10px] text-gold font-bold mb-2 block border-b border-white/10 pb-1">FAHRZEUGE</label>
                             <div class="grid grid-cols-3 gap-2">
                                 <button onclick="addVehicle('#3b82f6')" class="tool-icon bg-blue-500/10" title="PKW Blau"><i class="fas fa-car text-blue-500"></i></button>
                                 <button onclick="addVehicle('#ef4444')" class="tool-icon bg-red-500/10" title="PKW Rot"><i class="fas fa-car text-red-500"></i></button>
                                 <button onclick="addVehicle('#ffffff')" class="tool-icon bg-gray-500/10" title="PKW Weiß"><i class="fas fa-car text-white"></i></button>
                                 <button onclick="addVehicle('#22c55e')" class="tool-icon bg-green-500/10" title="PKW Grün"><i class="fas fa-car text-green-500"></i></button>
+                                <button onclick="addVehicle('#111111')" class="tool-icon bg-gray-800/50" title="PKW Schwarz"><i class="fas fa-car text-gray-400"></i></button>
                                 <button onclick="addMotorcycle()" class="tool-icon bg-yellow-500/10" title="Motorrad"><i class="fas fa-motorcycle text-yellow-500"></i></button>
-                                <button onclick="addTruck()" class="tool-icon bg-purple-500/10" title="LKW"><i class="fas fa-truck text-purple-500"></i></button>
+                                <button onclick="addTruck()" class="tool-icon bg-purple-500/10 col-span-3" title="LKW"><i class="fas fa-truck text-purple-500 mr-2"></i> LKW hinzufügen</button>
                             </div>
                         </div>
 
                         <div>
-                            <label class="text-[10px] text-gold font-bold mb-2 mt-2">Infrastruktur & Markierungen</label>
-                            <div class="grid grid-cols-3 gap-2">
-                                <button onclick="addTrafficLight()" class="tool-icon" title="Ampelanlage"><i class="fas fa-traffic-light"></i></button>
-                                <button onclick="addStopSign()" class="tool-icon" title="Stoppschild"><i class="fas fa-octagon text-red-500"></i></button>
-                                <button onclick="addYieldSign()" class="tool-icon" title="Vorfahrt gewähren"><i class="fas fa-caret-down text-red-400"></i></button>
-                                <button onclick="addPedestrianCrossing()" class="tool-icon" title="Zebrastreifen"><i class="fas fa-grip-lines"></i></button>
-                                <button onclick="addCone()" class="tool-icon" title="Pylone"><i class="fas fa-triangle-exclamation text-orange-500"></i></button>
-                                <button onclick="addArrow()" class="tool-icon" title="Fahrtrichtung"><i class="fas fa-long-arrow-alt-up text-gold"></i></button>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="text-[10px] text-gold font-bold mb-2 mt-2">Zeichnen & Text</label>
+                            <label class="text-[10px] text-gold font-bold mb-2 mt-2 block border-b border-white/10 pb-1">STRASSEN & WEGE</label>
                             <div class="grid grid-cols-2 gap-2">
-                                <button onclick="addText()" class="tool-icon" title="Textfeld"><i class="fas fa-font"></i> Text</button>
-                                <button onclick="toggleDrawingMode()" id="btn-draw" class="tool-icon" title="Freihand"><i class="fas fa-pen"></i> Stift</button>
+                                <button onclick="addStreet('horizontal')" class="tool-icon" title="Straße Horizontal"><i class="fas fa-road"></i> Horiz.</button>
+                                <button onclick="addStreet('vertical')" class="tool-icon" title="Straße Vertikal"><i class="fas fa-road fa-rotate-90"></i> Vert.</button>
+                                <button onclick="addIntersection()" class="tool-icon col-span-2" title="Kreuzung"><i class="fas fa-arrows-alt"></i> Kreuzung einfügen</button>
+                                <button onclick="addLaneMarking()" class="tool-icon col-span-2" title="Fahrbahnmarkierung"><i class="fas fa-grip-lines"></i> Markierung gestrichelt</button>
+                                <button onclick="addPedestrianCrossing()" class="tool-icon col-span-2" title="Zebrastreifen"><i class="fas fa-bars"></i> Zebrastreifen</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] text-gold font-bold mb-2 mt-2 block border-b border-white/10 pb-1">VERKEHRSZEICHEN & AMPELN</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="addTrafficSign('stop')" class="tool-icon" title="Stoppschild">
+                                    <span class="text-red-500 font-black text-[10px]">STOP</span>
+                                </button>
+                                <button onclick="addTrafficSign('yield')" class="tool-icon" title="Vorfahrt gewähren">
+                                    <i class="fas fa-caret-down text-red-400"></i>
+                                </button>
+                                <button onclick="addTrafficSign('priority')" class="tool-icon" title="Vorfahrtsstraße">
+                                    <i class="fas fa-diamond text-yellow-500"></i>
+                                </button>
+                                <button onclick="addTrafficSign('speed')" class="tool-icon" title="Tempolimit">
+                                    <span class="text-white border-2 border-red-500 rounded-full px-1 text-[10px] font-bold">50</span>
+                                </button>
+                                <button onclick="addTrafficLight('red')" class="tool-icon" title="Ampel Rot">
+                                    <i class="fas fa-traffic-light text-red-500"></i>
+                                </button>
+                                <button onclick="addTrafficLight('green')" class="tool-icon" title="Ampel Grün">
+                                    <i class="fas fa-traffic-light text-green-500"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] text-gold font-bold mb-2 mt-2 block border-b border-white/10 pb-1">MARKIERUNGEN & SPUREN</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="addDamageMarker()" class="tool-icon bg-red-500/10" title="Delle / Kollisionspunkt">
+                                    <i class="fas fa-times text-red-500 mr-2"></i> Schaden
+                                </button>
+                                <button onclick="addBrakeTrack()" class="tool-icon bg-gray-500/10" title="Bremsspur">
+                                    <i class="fas fa-stream text-gray-500 mr-2"></i> Spur
+                                </button>
+                                <button onclick="addArrow()" class="tool-icon" title="Fahrtrichtung / Pfeil">
+                                    <i class="fas fa-long-arrow-alt-up text-gold mr-2"></i> Pfeil
+                                </button>
+                                <button onclick="addText()" class="tool-icon" title="Textfeld">
+                                    <i class="fas fa-font mr-2"></i> Text
+                                </button>
                             </div>
                         </div>
                         
-                        <div class="mt-auto border-t border-white/10 pt-4">
-                            <label class="text-[10px] text-red-500 font-bold mb-2">Editor Aktionen</label>
-                            <div class="flex gap-2">
-                                <button onclick="deleteObject()" class="tool-icon text-red-500 flex-1" title="Markiertes Objekt Löschen"><i class="fas fa-eraser"></i></button>
-                                <button onclick="clearCanvas()" class="tool-icon text-red-700 flex-1" title="Alles Leeren"><i class="fas fa-trash"></i></button>
+                        <div class="mt-4 border-t border-white/10 pt-4">
+                            <label class="text-[10px] text-red-500 font-bold mb-2 block">EDITOR AKTIONEN</label>
+                            <div class="flex gap-2 mb-2">
+                                <button onclick="toggleDrawingMode()" id="btn-draw" class="tool-icon flex-1" title="Freihandzeichnen">
+                                    <i class="fas fa-pen"></i> Stift
+                                </button>
+                                <button onclick="deleteObject()" class="tool-icon text-red-500 flex-1" title="Markiertes Objekt Löschen">
+                                    <i class="fas fa-eraser"></i> Objekt
+                                </button>
                             </div>
-                            <button onclick="downloadSkizze()" class="btn-gold w-full py-4 text-xs mt-4 rounded-xl font-black tracking-widest"><i class="fas fa-download mr-2"></i> BILD EXPORT</button>
+                            <button onclick="clearCanvas()" class="tool-icon text-red-700 w-full" title="Alles Leeren">
+                                <i class="fas fa-trash mr-2"></i> Komplett Leeren
+                            </button>
+                            <button onclick="downloadSkizze()" class="btn-gold w-full py-4 text-xs mt-4 rounded-xl font-black tracking-widest">
+                                <i class="fas fa-download mr-2"></i> BILD EXPORT
+                            </button>
                         </div>
 
                     </div>
-                    
                     <div class="flex-1 bg-[#1a1a1a] rounded-xl border-2 border-white/10 flex justify-center items-center overflow-hidden relative" id="canvas-container">
                         <canvas id="sketchCanvas" width="800" height="600"></canvas>
                         <div class="absolute bottom-4 right-4 text-[10px] font-mono text-white/20 pointer-events-none">
-                            Maßstab: 1 Kästchen = ca. 2 Meter
+                            Maßstab: 1 Raster = ca. 2 Meter
                         </div>
                     </div>
-
-                </div>
+                    </div>
             </div>
 
             <div id="page-archiv" class="page">
@@ -590,7 +815,7 @@
 
                 <div class="glass-card p-6 mb-10 border-l-4 border-l-gold">
                     <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-gold">
-                        <i class="fas fa-search mr-2"></i> StVO Schnellsuche
+                        <i class="fas fa-search mr-2"></i> StVO Schnellsuche (Nach Gesetze.txt)
                     </h3>
                     <input 
                         type="text" 
@@ -604,7 +829,9 @@
 
                 <div class="mb-10">
                     <h3 class="text-xs font-black text-gold uppercase tracking-[0.3em] mb-6 flex items-center gap-4">
-                        <span class="w-10 h-[1px] bg-gold/30"></span> Rechtsgrundlagen <span class="flex-1 h-[1px] bg-gold/30"></span>
+                        <span class="w-10 h-[1px] bg-gold/30"></span> 
+                        Rechtsgrundlagen 
+                        <span class="flex-1 h-[1px] bg-gold/30"></span>
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <a href="https://docs.google.com/document/d/1dwsOdEOAKOXLCMIDdxiqjPcrU3NJ90RW22qLzrUnkao/" target="_blank" class="glass-card p-6 flex items-start gap-4 hover:bg-white/10 transition">
@@ -632,59 +859,137 @@
 
                 <div>
                     <h3 class="text-xs font-black text-gold uppercase tracking-[0.3em] mb-6 flex items-center gap-4">
-                        <span class="w-10 h-[1px] bg-gold/30"></span> Einsatz-Werkzeuge <span class="flex-1 h-[1px] bg-gold/30"></span>
+                        <span class="w-10 h-[1px] bg-gold/30"></span> 
+                        Einsatz-Werkzeuge 
+                        <span class="flex-1 h-[1px] bg-gold/30"></span>
                     </h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         
-                        <div class="glass-card p-8">
+                        <div class="glass-card p-8 border-t-4 border-t-gold">
                             <div class="flex items-center gap-4 mb-6">
                                 <div class="w-12 h-12 bg-gold/10 rounded flex items-center justify-center border border-gold/30">
                                     <i class="fas fa-calculator text-gold"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold uppercase italic text-lg leading-tight">Bußgeld-Rechner</h4>
-                                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Inkl. gesetzlicher Toleranz</p>
+                                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Inkl. Toleranz</p>
                                 </div>
                             </div>
                             <div class="space-y-4">
+                                <div>
+                                    <label>Ortslage</label>
+                                    <select id="calc_location" class="w-full" onchange="calculateFine()">
+                                        <option value="innerorts">Innerorts</option>
+                                        <option value="ausserorts">Außerorts</option>
+                                    </select>
+                                </div>
                                 <div class="grid grid-cols-2 gap-4">
-                                    <div><label>Limit (km/h)</label><input type="number" id="calc_limit" value="50" class="w-full text-center font-bold" oninput="calculateFine()"></div>
-                                    <div><label>Messwert (km/h)</label><input type="number" id="calc_speed" class="w-full text-center font-bold" oninput="calculateFine()"></div>
+                                    <div>
+                                        <label>Limit</label>
+                                        <input type="number" id="calc_limit" value="50" class="w-full text-center font-bold" oninput="calculateFine()">
+                                    </div>
+                                    <div>
+                                        <label>Messwert</label>
+                                        <input type="number" id="calc_speed" class="w-full text-center font-bold" oninput="calculateFine()">
+                                    </div>
                                 </div>
                                 <div id="calc_result" class="bg-black/30 p-6 rounded-xl border border-white/5 hidden">
-                                    <div class="flex justify-between items-center mb-1"><span class="text-xs text-white/40 uppercase">Toleranz-Abzug:</span><span id="res_tol" class="font-bold text-red-400">0 km/h</span></div>
-                                    <div class="flex justify-between items-center mb-2"><span class="text-xs text-white/40 uppercase">Netto-Wert:</span><span id="res_netto" class="font-black text-gold">0 km/h</span></div>
-                                    <div class="flex justify-between items-center mb-4"><span class="text-xs text-white/40 uppercase">Bußgeld:</span><span id="res_money" class="text-2xl font-black text-gold italic">0.00 €</span></div>
-                                    <div id="res_ban_box" class="pt-3 border-t border-white/10 hidden"><div class="flex items-center gap-2 text-red-500 font-bold text-[10px] uppercase italic"><i class="fas fa-exclamation-triangle"></i><span id="res_ban"></span></div></div>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-xs text-white/40 uppercase">Toleranz:</span>
+                                        <span id="res_tol" class="font-bold text-red-400">0 km/h</span>
+                                    </div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs text-white/40 uppercase">Netto:</span>
+                                        <span id="res_netto" class="font-black text-gold">0 km/h</span>
+                                    </div>
+                                    <div class="flex justify-between items-center mb-4">
+                                        <span class="text-xs text-white/40 uppercase">Strafe:</span>
+                                        <span id="res_money" class="text-2xl font-black text-gold italic">0.00 €</span>
+                                    </div>
+                                    <div id="res_ban_box" class="pt-3 border-t border-white/10 hidden">
+                                        <div class="flex items-center gap-2 text-red-500 font-bold text-[10px] uppercase italic">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            <span id="res_ban"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="glass-card p-8">
+                        <div class="glass-card p-8 border-t-4 border-t-blue-500">
                             <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 bg-gold/10 rounded flex items-center justify-center border border-gold/30">
-                                    <i class="fas fa-wine-glass-alt text-gold"></i>
+                                <div class="w-12 h-12 bg-blue-500/10 rounded flex items-center justify-center border border-blue-500/30">
+                                    <i class="fas fa-ruler-horizontal text-blue-500"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold uppercase italic text-lg leading-tight">Promille-Simulator</h4>
-                                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Atemalkohol-Schätzung (Widmark)</p>
+                                    <h4 class="font-bold uppercase italic text-lg leading-tight">Anhalteweg</h4>
+                                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Faustformel Unfallaufnahme</p>
                                 </div>
                             </div>
                             <div class="space-y-4">
-                                <div class="grid grid-cols-3 gap-4">
-                                    <div><label>Gewicht (kg)</label><input type="number" id="alc_weight" value="80" min="40" class="w-full text-center" oninput="calculateAlcohol()"></div>
-                                    <div><label>Bier (0,5l)</label><input type="number" id="alc_beer" value="0" min="0" class="w-full text-center" oninput="calculateAlcohol()"></div>
-                                    <div><label>Schnaps (4cl)</label><input type="number" id="alc_shot" value="0" min="0" class="w-full text-center" oninput="calculateAlcohol()"></div>
+                                <div>
+                                    <label>Geschwindigkeit (km/h)</label>
+                                    <input type="number" id="calc_brake_speed" value="50" class="w-full text-center font-bold" oninput="calculateBrake()">
+                                </div>
+                                <div class="flex items-center gap-3 pt-2 pb-2">
+                                    <input type="checkbox" id="calc_danger" class="w-5 h-5 accent-blue-500" onchange="calculateBrake()">
+                                    <label class="!mb-0 normal-case tracking-normal cursor-pointer" for="calc_danger">Gefahrenbremsung</label>
+                                </div>
+                                <div class="bg-black/30 p-6 rounded-xl border border-white/5">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-xs text-white/40 uppercase">Reaktionsweg:</span>
+                                        <span id="res_react" class="font-bold text-white">15.0 m</span>
+                                    </div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs text-white/40 uppercase">Bremsweg:</span>
+                                        <span id="res_brake" class="font-bold text-white">25.0 m</span>
+                                    </div>
+                                    <div class="border-t border-white/10 my-3 pt-3 flex justify-between items-center">
+                                        <span class="text-xs text-white/40 uppercase font-bold">Anhalteweg:</span>
+                                        <span id="res_total" class="text-2xl font-black text-blue-400 italic">40.0 m</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-8 border-t-4 border-t-red-500">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-red-500/10 rounded flex items-center justify-center border border-red-500/30">
+                                    <i class="fas fa-wine-glass-alt text-red-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold uppercase italic text-lg leading-tight">Promille-Sim.</h4>
+                                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Atemalkohol-Schätzung</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label>Gewicht (kg)</label>
+                                        <input type="number" id="alc_weight" value="80" min="40" class="w-full text-center" oninput="calculateAlcohol()">
+                                    </div>
+                                    <div>
+                                        <label>Bier (0,5l)</label>
+                                        <input type="number" id="alc_beer" value="0" min="0" class="w-full text-center" oninput="calculateAlcohol()">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label>Schnaps / Harter Alkohol (4cl)</label>
+                                        <input type="number" id="alc_shot" value="0" min="0" class="w-full text-center" oninput="calculateAlcohol()">
+                                    </div>
                                 </div>
                                 <div id="alc_result" class="bg-black/30 p-6 rounded-xl border border-white/5">
                                     <div class="flex justify-between items-end">
-                                        <div><span class="text-[9px] text-white/40 uppercase">Ergebnis</span><p class="text-3xl font-black text-gold italic" id="res_promille">0.00 ‰</p></div>
+                                        <div>
+                                            <span class="text-[9px] text-white/40 uppercase">Ergebnis</span>
+                                            <p class="text-3xl font-black text-red-500 italic" id="res_promille">0.00 ‰</p>
+                                        </div>
                                         <span id="alc_badge" class="px-2 py-1 bg-green-500/20 text-green-500 text-[10px] font-bold rounded uppercase">Nüchtern</span>
                                     </div>
                                     <p id="alc_law" class="text-[9px] text-white/60 mt-3 italic leading-tight">Fahrtüchtig.</p>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -698,8 +1003,6 @@
     <script>
         /**
          * STVO DATENBANK
-         * Vollständig aus der Datei "Gesetze.txt" extrahiert.
-         * Enthält NUR Gesetzestexte, keine Strafen/Punkte.
          */
         const STVO_DATABASE = [
             {
@@ -810,7 +1113,7 @@
         ];
 
         /**
-         * Login Funktion (Unverändert)
+         * LOGIN FUNKTION
          */
         function checkLogin() {
             const user = document.getElementById('login-user').value;
@@ -832,7 +1135,7 @@
         }
 
         /**
-         * Navigation (Unverändert)
+         * NAVIGATION FUNKTION
          */
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -843,8 +1146,7 @@
         }
 
         /**
-         * MODIFIKATION 1: STVO SUCHE
-         * Filtert jetzt ausschließlich die Paragrafen aus der 'Gesetze.txt'.
+         * STVO SUCHE FUNKTION
          */
         function searchStVO() {
             const query = document.getElementById('stvo_search').value.toLowerCase();
@@ -857,7 +1159,6 @@
                 return;
             }
 
-            // Filtert die STVO_DATABASE nach ID, Titel oder Inhalt
             const filtered = STVO_DATABASE.filter(i => 
                 i.id.toLowerCase().includes(query) ||
                 i.t.toLowerCase().includes(query) || 
@@ -885,14 +1186,12 @@
         }
 
         /**
-         * MODIFIKATION 2: PROFESSIONELLES PDF PROTOKOLL
-         * Überarbeitet für eine klare, polizeiliche Akten-Struktur.
+         * PDF GENERIERUNG FUNKTION
          */
         async function generatePDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            // Formulardaten abrufen
             const nr = document.getElementById('v_nr').value || "VNR-N/A";
             const datum = document.getElementById('v_datum').value || "Unbekannt";
             const beamter = document.getElementById('v_beamter').value || "Unbekannt";
@@ -906,11 +1205,9 @@
             const sv = document.getElementById('v_sachverhalt').value || "Keine Schilderung vorhanden.";
             const links = document.getElementById('v_links').value;
             
-            // Dokument Header (Dunkelblau/Gold)
-            doc.setFillColor(0, 51, 102); // Police Blue
+            doc.setFillColor(0, 51, 102); 
             doc.rect(0, 0, 210, 40, 'F');
-            
-            doc.setTextColor(212, 175, 55); // Gold
+            doc.setTextColor(212, 175, 55); 
             doc.setFontSize(24);
             doc.setFont("helvetica", "bold");
             doc.text("VERKEHRSUNFALLPROTOKOLL", 20, 20);
@@ -920,7 +1217,6 @@
             doc.setFont("helvetica", "normal");
             doc.text("POLIZEIPRÄSIDIUM DRESDEN | DEZERNAT 4 - VERKEHR", 20, 30);
 
-            // Sektion A: Allgemeine Daten
             let yPos = 55;
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(12);
@@ -942,7 +1238,6 @@
             doc.setFont("helvetica", "bold");
             doc.text("Einsatzort:", 20, yPos); doc.setFont("helvetica", "normal"); doc.text(ort, 65, yPos);
 
-            // Sektion B: Beteiligte & Zeugen
             yPos += 15;
             doc.setFontSize(12);
             doc.setFont("helvetica", "bold");
@@ -972,7 +1267,6 @@
             doc.text(zeugenLines, 65, yPos);
             yPos += (zeugenLines.length * 5) + 10;
 
-            // Sektion C: Sachverhalt & Analyse
             doc.setFontSize(12);
             doc.setFont("helvetica", "bold");
             doc.text("C. ANALYSE & SACHVERHALTSDARSTELLUNG", 20, yPos);
@@ -996,7 +1290,6 @@
             doc.text(svLines, 20, yPos);
             yPos += (svLines.length * 5) + 10;
 
-            // Sektion D: Beweise (Optional)
             if(links) {
                 if (yPos > 250) { doc.addPage(); yPos = 20; }
                 doc.setFontSize(12);
@@ -1010,46 +1303,49 @@
                 doc.text(linkLines, 20, yPos);
             }
 
-            // Fußzeile
             doc.setFontSize(8);
             doc.setTextColor(150, 150, 150);
             doc.text(`Generiert am: ${new Date().toLocaleString()} | Dieses Dokument ist digital verifiziert.`, 20, 285);
             doc.text("Nur für den behördlichen Dienstgebrauch", 140, 285);
 
-            // PDF Speichern
             doc.save(`Protokoll_${nr}.pdf`);
         }
 
-        /**
-         * MODIFIKATION 3: PROFESSIONELLES SKIZZEN-TOOL
-         * Nutzt Fabric.js mit Raster, speziellen Icons/Symbolen und sauberen Zeichenfunktionen.
-         */
+        // =========================================================================
+        // SKIZZEN TOOL FUNKTIONEN (ERWEITERT & BUGFIXED)
+        // =========================================================================
         let canvas;
         
-        function initCanvas() {
-            canvas = new fabric.Canvas('sketchCanvas');
-            
-            // Hintergrund Raster erstellen
+        /**
+         * Raster (Grid) zeichnen - Ausgelagert für den "Clear" Befehl
+         */
+        function initGrid() {
             const gridSize = 40;
             const gridColor = 'rgba(255, 255, 255, 0.05)';
             
-            // Zeichne Grid-Linien
             for (let i = 0; i < (canvas.width / gridSize); i++) {
-                canvas.add(new fabric.Line([ i * gridSize, 0, i * gridSize, canvas.height], { 
-                    stroke: gridColor, 
-                    selectable: false,
-                    evented: false
-                }));
+                canvas.add(new fabric.Line(
+                    [ i * gridSize, 0, i * gridSize, canvas.height], 
+                    { stroke: gridColor, selectable: false, evented: false }
+                ));
             }
             for (let i = 0; i < (canvas.height / gridSize); i++) {
-                canvas.add(new fabric.Line([ 0, i * gridSize, canvas.width, i * gridSize], { 
-                    stroke: gridColor, 
-                    selectable: false,
-                    evented: false
-                }));
+                canvas.add(new fabric.Line(
+                    [ 0, i * gridSize, canvas.width, i * gridSize], 
+                    { stroke: gridColor, selectable: false, evented: false }
+                ));
             }
+        }
+
+        /**
+         * Canvas beim Start laden
+         */
+        function initCanvas() {
+            canvas = new fabric.Canvas('sketchCanvas');
+            canvas.setBackgroundColor('#1a1a1a', canvas.renderAll.bind(canvas));
+            initGrid();
             
-            // Tastatur-Steuerung zum Löschen
+            // Löschen mit Entf / Backspace
             window.addEventListener('keydown', (e) => {
                 if(e.key === "Delete" || e.key === "Backspace") {
                     deleteObject();
@@ -1057,7 +1353,7 @@
             });
         }
 
-        // Objekt Funktionen für die Skizze
+        /* --- FAHRZEUGE --- */
         function addVehicle(color) {
             const v = new fabric.Rect({
                 left: 100, top: 100, 
@@ -1067,16 +1363,10 @@
                 stroke: '#fff', strokeWidth: 1,
                 shadow: new fabric.Shadow({ color: 'rgba(0,0,0,0.5)', blur: 10 })
             });
-            // Füge eine "Frontscheibe" hinzu zur Erkennung der Fahrtrichtung
             const windshield = new fabric.Rect({
-                left: 145, top: 102,
-                fill: '#222',
-                width: 10, height: 26,
-                rx: 2, ry: 2
+                left: 145, top: 102, fill: '#222', width: 10, height: 26, rx: 2, ry: 2
             });
-            const group = new fabric.Group([v, windshield], {
-                left: 100, top: 100
-            });
+            const group = new fabric.Group([v, windshield], { left: 100, top: 100 });
             canvas.add(group);
             canvas.setActiveObject(group);
         }
@@ -1085,49 +1375,126 @@
             const m = new fabric.Rect({
                 left: 100, top: 100, fill: '#eab308', width: 25, height: 10, rx: 3, ry: 3
             });
-            canvas.add(m);
+            const rider = new fabric.Circle({
+                left: 108, top: 98, radius: 6, fill: '#ffffff'
+            });
+            const group = new fabric.Group([m, rider], { left: 100, top: 100 });
+            canvas.add(group);
         }
 
         function addTruck() {
-            const trailer = new fabric.Rect({ left: 100, top: 100, fill: '#7e22ce', width: 100, height: 40 });
-            const cab = new fabric.Rect({ left: 205, top: 105, fill: '#fff', width: 30, height: 30, rx: 5, ry: 5 });
+            const trailer = new fabric.Rect({ left: 100, top: 100, fill: '#7e22ce', width: 120, height: 40 });
+            const cab = new fabric.Rect({ left: 225, top: 105, fill: '#ffffff', width: 30, height: 30, rx: 5, ry: 5 });
             const group = new fabric.Group([trailer, cab], { left: 100, top: 100 });
             canvas.add(group);
         }
 
-        function addTrafficLight() {
-            const box = new fabric.Rect({ width: 20, height: 60, fill: '#333', rx: 3, ry: 3 });
-            const r = new fabric.Circle({ radius: 6, fill: '#ef4444', left: 4, top: 5 });
-            const y = new fabric.Circle({ radius: 6, fill: '#eab308', left: 4, top: 24 });
-            const g = new fabric.Circle({ radius: 6, fill: '#22c55e', left: 4, top: 43 });
-            const group = new fabric.Group([box, r, y, g], { left: 200, top: 100 });
-            canvas.add(group);
+        /* --- STRASSEN & WEGE --- */
+        function addStreet(direction) {
+            let width = direction === 'horizontal' ? 600 : 120;
+            let height = direction === 'horizontal' ? 120 : 600;
+            
+            const street = new fabric.Rect({
+                left: 100, top: 100, fill: '#333333', width: width, height: height, opacity: 0.8
+            });
+            canvas.add(street);
+            canvas.sendToBack(street);
         }
 
-        function addStopSign() {
-            const sign = new fabric.Circle({ radius: 20, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 });
-            const text = new fabric.Text('STOP', { fontSize: 12, fill: '#fff', left: 4, top: 12, fontWeight: 'bold' });
-            const group = new fabric.Group([sign, text], { left: 200, top: 100 });
-            canvas.add(group);
+        function addIntersection() {
+            const intersection = new fabric.Rect({
+                left: 200, top: 200, fill: '#333333', width: 160, height: 160, opacity: 0.8
+            });
+            canvas.add(intersection);
+            canvas.sendToBack(intersection);
         }
 
-        function addYieldSign() {
-            const sign = new fabric.Triangle({ width: 40, height: 40, fill: '#fff', stroke: '#ef4444', strokeWidth: 4, angle: 180, left: 40, top: 40 });
-            canvas.add(sign);
+        function addLaneMarking() {
+            const line = new fabric.Line([0, 0, 300, 0], {
+                left: 100, top: 100, stroke: '#ffffff', strokeWidth: 4, strokeDashArray: [20, 20]
+            });
+            canvas.add(line);
         }
 
         function addPedestrianCrossing() {
             const stripes = [];
-            for(let i=0; i<5; i++) {
-                stripes.push(new fabric.Rect({ left: 0, top: i*20, width: 60, height: 10, fill: '#fff' }));
+            for(let i = 0; i < 6; i++) {
+                stripes.push(new fabric.Rect({ left: 0, top: i * 20, width: 80, height: 10, fill: '#ffffff' }));
             }
             const group = new fabric.Group(stripes, { left: 200, top: 200 });
             canvas.add(group);
         }
 
-        function addCone() {
-            const cone = new fabric.Triangle({ width: 15, height: 20, fill: '#f97316', stroke: '#fff', strokeWidth: 1 });
-            canvas.add(cone);
+        /* --- VERKEHRSZEICHEN & AMPELN --- */
+        function addTrafficSign(type) {
+            let sign, text;
+            let elements = [];
+
+            if (type === 'stop') {
+                sign = new fabric.Polygon([
+                    {x: 10, y: 0}, {x: 30, y: 0}, {x: 40, y: 10}, {x: 40, y: 30},
+                    {x: 30, y: 40}, {x: 10, y: 40}, {x: 0, y: 30}, {x: 0, y: 10}
+                ], { fill: '#ef4444', stroke: '#ffffff', strokeWidth: 2 });
+                text = new fabric.Text('STOP', { fontSize: 10, fill: '#fff', left: 5, top: 15, fontWeight: 'bold' });
+                elements.push(sign, text);
+            } 
+            else if (type === 'yield') {
+                sign = new fabric.Triangle({ width: 40, height: 40, fill: '#ffffff', stroke: '#ef4444', strokeWidth: 4, angle: 180, left: 40, top: 40 });
+                elements.push(sign);
+            }
+            else if (type === 'priority') {
+                const outer = new fabric.Rect({ width: 30, height: 30, fill: '#ffffff', angle: 45, left: 20, top: 0 });
+                const inner = new fabric.Rect({ width: 20, height: 20, fill: '#eab308', angle: 45, left: 20, top: 7 });
+                elements.push(outer, inner);
+            }
+            else if (type === 'speed') {
+                // EDITIERBARES TEMPOSCHILD
+                let speedLimit = prompt("Welche Geschwindigkeit soll auf dem Schild stehen?", "50");
+                if (speedLimit === null || speedLimit.trim() === "") { speedLimit = "50"; }
+                
+                const signCircle = new fabric.Circle({ 
+                    radius: 20, fill: '#ffffff', stroke: '#ef4444', strokeWidth: 5,
+                    originX: 'center', originY: 'center'
+                });
+                const signText = new fabric.Text(speedLimit, { 
+                    fontSize: 20, fill: '#000000', fontWeight: 'bold',
+                    originX: 'center', originY: 'center'
+                });
+                elements.push(signCircle, signText);
+            }
+
+            if(elements.length > 0) {
+                const group = new fabric.Group(elements, { left: 150, top: 150 });
+                canvas.add(group);
+            }
+        }
+
+        function addTrafficLight(state) {
+            const box = new fabric.Rect({ width: 20, height: 60, fill: '#222222', rx: 3, ry: 3 });
+            const rColor = state === 'red' ? '#ef4444' : '#550000';
+            const gColor = state === 'green' ? '#22c55e' : '#004400';
+            
+            const r = new fabric.Circle({ radius: 6, fill: rColor, left: 4, top: 5 });
+            const y = new fabric.Circle({ radius: 6, fill: '#555500', left: 4, top: 24 });
+            const g = new fabric.Circle({ radius: 6, fill: gColor, left: 4, top: 43 });
+            
+            const group = new fabric.Group([box, r, y, g], { left: 200, top: 100 });
+            canvas.add(group);
+        }
+
+        /* --- MARKIERUNGEN & SPUREN --- */
+        function addDamageMarker() {
+            const line1 = new fabric.Line([-10, -10, 10, 10], { stroke: '#ef4444', strokeWidth: 4 });
+            const line2 = new fabric.Line([10, -10, -10, 10], { stroke: '#ef4444', strokeWidth: 4 });
+            const group = new fabric.Group([line1, line2], { left: 150, top: 150 });
+            canvas.add(group);
+        }
+
+        function addBrakeTrack() {
+            const track = new fabric.Rect({
+                left: 100, top: 100, fill: '#000000', opacity: 0.5, width: 100, height: 10
+            });
+            canvas.add(track);
         }
 
         function addArrow() {
@@ -1138,16 +1505,18 @@
         }
 
         function addText() {
-            const text = new fabric.IText('Textfeld (Doppelklick)', {
-                left: 150, top: 150, fontSize: 18, fill: '#fff', fontFamily: 'Montserrat', fontWeight: 'bold'
+            const text = new fabric.IText('Doppelklick für Text', {
+                left: 150, top: 150, fontSize: 16, fill: '#ffffff', fontFamily: 'Montserrat', fontWeight: 'bold',
+                backgroundColor: 'rgba(0,0,0,0.5)'
             });
             canvas.add(text);
         }
 
+        /* --- EDITOR STEUERUNG --- */
         function toggleDrawingMode() {
             canvas.isDrawingMode = !canvas.isDrawingMode;
             if(canvas.isDrawingMode) {
-                canvas.freeDrawingBrush.color = '#ef4444'; // Rot für Skizzen
+                canvas.freeDrawingBrush.color = '#ef4444'; 
                 canvas.freeDrawingBrush.width = 3;
                 document.getElementById('btn-draw').classList.add('text-gold', 'border-gold');
             } else {
@@ -1162,60 +1531,97 @@
             }
         }
 
+        /**
+         * BUGFIX: Canvas leeren
+         * Löscht alle Objekte und zeichnet den Hintergrund und das Raster sauber neu, 
+         * ohne die Events des Canvas zu zerstören.
+         */
         function clearCanvas() {
             if(confirm("Möchtest du die Skizze wirklich komplett leeren?")) {
                 canvas.clear();
-                initCanvas(); // Raster neu laden
+                canvas.setBackgroundColor('#1a1a1a', canvas.renderAll.bind(canvas));
+                initGrid(); 
             }
         }
 
         function downloadSkizze() {
-            canvas.discardActiveObject(); // Markierungen vor Export entfernen
+            canvas.discardActiveObject(); 
             canvas.renderAll();
             const dataURL = canvas.toDataURL({ format: 'png', quality: 1, multiplier: 2 });
             const link = document.createElement('a');
-            link.download = 'VUK-Skizze.png';
+            link.download = 'VUK-Skizze-Export.png';
             link.href = dataURL;
             link.click();
         }
 
-        // ==========================================
-        // UNVERÄNDERTE FUNKTIONEN (AUS SCRIPT2)
-        // ==========================================
+        // =========================================================================
+        // RECHNER (BUSSGELD & ALKOHOL & BREMSWEG)
+        // =========================================================================
         function calculateFine() {
-            const limit = parseInt(document.getElementById('calc_limit').value) || 0;
-            const speed = parseInt(document.getElementById('calc_speed').value) || 0;
+            const limitStr = document.getElementById('calc_limit').value;
+            const speedStr = document.getElementById('calc_speed').value;
+            const loc = document.getElementById('calc_location').value;
+            
+            const limit = parseInt(limitStr) || 0;
+            const speed = parseInt(speedStr) || 0;
             const resBox = document.getElementById('calc_result');
             
-            if(speed <= limit) { resBox.classList.add('hidden'); return; }
+            if(speed <= limit) { 
+                resBox.classList.add('hidden'); 
+                return;
+            }
+            
             resBox.classList.remove('hidden');
 
-            let tolerance = speed <= 100 ? 3 : Math.round(speed * 0.03);
-            let netto = speed - tolerance;
-            let diff = netto - limit;
-
+            let tolerance = 3;
+            if (speed > 100) {
+                tolerance = Math.round(speed * 0.03);
+                if (tolerance < 3) {
+                    tolerance = 3;
+                }
+            }
+            
+            const netto = speed - tolerance;
+            const diff = netto - limit;
+            
             document.getElementById('res_tol').innerText = "-" + tolerance + " km/h";
             document.getElementById('res_netto').innerText = netto + " km/h";
 
             let fine = "0.00 €";
             let ban = "";
 
-            if(diff > 0) {
-                if(diff <= 10) fine = "20.00 €";
-                else if(diff <= 15) fine = "40.00 €";
-                else if(diff <= 20) fine = "60.00 €";
-                else if(diff <= 25) fine = "100.00 €";
-                else if(diff <= 30) { fine = "150.00 €"; ban = "1 Monat Fahrverbot (Evtl.)"; }
-                else if(diff <= 40) { fine = "200.00 €"; ban = "1 Monat Fahrverbot"; }
-                else if(diff <= 50) { fine = "320.00 €"; ban = "1 Monat Fahrverbot"; }
-                else if(diff <= 60) { fine = "480.00 €"; ban = "2 Monate Fahrverbot"; }
-                else if(diff <= 70) { fine = "600.00 €"; ban = "3 Monate Fahrverbot"; }
-                else { fine = "800.00 €"; ban = "3 Monate Fahrverbot + MPU"; }
+            const isInnerorts = (loc === "innerorts");
+
+            if (diff > 0) {
+                if (isInnerorts) {
+                    if (diff <= 10) { fine = "30.00 €"; }
+                    else if (diff <= 15) { fine = "50.00 €"; }
+                    else if (diff <= 20) { fine = "70.00 €"; }
+                    else if (diff <= 25) { fine = "115.00 €"; ban = "1 Punkt"; }
+                    else if (diff <= 30) { fine = "180.00 €"; ban = "1 Punkt / 1 Monat Fahrverbot (bei Wdh.)"; }
+                    else if (diff <= 40) { fine = "260.00 €"; ban = "2 Punkte / 1 Monat Fahrverbot"; }
+                    else if (diff <= 50) { fine = "400.00 €"; ban = "2 Punkte / 1 Monat Fahrverbot"; }
+                    else if (diff <= 60) { fine = "560.00 €"; ban = "2 Punkte / 2 Monate Fahrverbot"; }
+                    else if (diff <= 70) { fine = "700.00 €"; ban = "2 Punkte / 3 Monate Fahrverbot"; }
+                    else { fine = "800.00 €"; ban = "2 Punkte / 3 Monate Fahrverbot"; }
+                } else {
+                    if (diff <= 10) { fine = "20.00 €"; }
+                    else if (diff <= 15) { fine = "40.00 €"; }
+                    else if (diff <= 20) { fine = "60.00 €"; }
+                    else if (diff <= 25) { fine = "100.00 €"; ban = "1 Punkt"; }
+                    else if (diff <= 30) { fine = "150.00 €"; ban = "1 Punkt / 1 Monat Fahrverbot (bei Wdh.)"; }
+                    else if (diff <= 40) { fine = "200.00 €"; ban = "1 Punkt / 1 Monat Fahrverbot (bei Wdh.)"; }
+                    else if (diff <= 50) { fine = "320.00 €"; ban = "2 Punkte / 1 Monat Fahrverbot"; }
+                    else if (diff <= 60) { fine = "480.00 €"; ban = "2 Punkte / 1 Monat Fahrverbot"; }
+                    else if (diff <= 70) { fine = "600.00 €"; ban = "2 Punkte / 2 Monate Fahrverbot"; }
+                    else { fine = "700.00 €"; ban = "2 Punkte / 3 Monate Fahrverbot"; }
+                }
             }
 
             document.getElementById('res_money').innerText = fine;
             const banBox = document.getElementById('res_ban_box');
-            if(ban) {
+            
+            if (ban !== "") {
                 banBox.classList.remove('hidden');
                 document.getElementById('res_ban').innerText = ban;
             } else {
@@ -1227,11 +1633,13 @@
             const w = parseFloat(document.getElementById('alc_weight').value) || 80;
             const beer = parseFloat(document.getElementById('alc_beer').value) || 0;
             const shots = parseFloat(document.getElementById('alc_shot').value) || 0;
+            
             const alc_g = (beer * 500 * 0.05 * 0.8) + (shots * 40 * 0.4 * 0.8);
             const promille = alc_g / (w * 0.7);
 
             const display = document.getElementById('res_promille');
             display.innerText = promille.toFixed(2) + " ‰";
+            
             const badge = document.getElementById('alc_badge');
             const law = document.getElementById('alc_law');
 
@@ -1252,6 +1660,32 @@
                 badge.className = "px-2 py-1 bg-red-500/20 text-red-500 text-[10px] font-bold rounded uppercase";
                 law.innerText = "Absolute Fahruntüchtigkeit. Führerscheinentzug!";
             }
+        }
+
+        /**
+         * NEUES TOOL: Anhalteweg Berechnung
+         * Berechnet Reaktionsweg, Bremsweg und Gesamtanhalteweg basierend auf der Faustformel.
+         */
+        function calculateBrake() {
+            const speed = parseFloat(document.getElementById('calc_brake_speed').value) || 0;
+            const isDanger = document.getElementById('calc_danger').checked;
+            
+            // Faustformel: Reaktionsweg = (Geschwindigkeit / 10) * 3
+            let reaction = (speed / 10) * 3;
+            
+            // Faustformel: Bremsweg = (Geschwindigkeit / 10) * (Geschwindigkeit / 10)
+            let brake = (speed / 10) * (speed / 10);
+            
+            // Gefahrenbremsung halbiert den Bremsweg
+            if (isDanger) {
+                brake = brake / 2;
+            }
+            
+            let total = reaction + brake;
+            
+            document.getElementById('res_react').innerText = reaction.toFixed(1) + " m";
+            document.getElementById('res_brake').innerText = brake.toFixed(1) + " m";
+            document.getElementById('res_total').innerText = total.toFixed(1) + " m";
         }
     </script>
 </body>
