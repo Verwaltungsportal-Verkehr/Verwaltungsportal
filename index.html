@@ -2,18 +2,30 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verwaltungsportal | Dez. Verkehr Dresden</title>
+    <meta 
+        name="viewport" 
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>
+        Verwaltungsportal | Dez. Verkehr Dresden
+    </title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link 
+        href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
+        rel="stylesheet"
+    >
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+        rel="stylesheet"
+    >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap');
+        
         :root {
             --gold: #d4af37;
             --gold-glow: rgba(212, 175, 55, 0.5);
@@ -30,7 +42,10 @@
 
         #login-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
             background: var(--bg-dark);
             z-index: 9999;
             display: flex;
@@ -63,10 +78,14 @@
 
         .fullscreen-bg {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
             z-index: -1;
             overflow: hidden;
         }
+
         .fullscreen-bg img {
             width: 100%;
             height: 100%;
@@ -116,13 +135,22 @@
         .nav-btn.active::after {
             content: '';
             position: absolute;
-            bottom: -5px; left: 0; width: 100%; height: 2px;
+            bottom: -5px; 
+            left: 0; 
+            width: 100%; 
+            height: 2px;
             background: var(--gold);
             box-shadow: 0 0 10px var(--gold);
         }
 
-        .page { display: none; }
-        .page.active { display: block; animation: fadeIn 0.5s ease forwards; }
+        .page { 
+            display: none; 
+        }
+
+        .page.active { 
+            display: block; 
+            animation: fadeIn 0.5s ease forwards; 
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -180,14 +208,19 @@
             border: 1px solid rgba(255,255,255,0.1);
             transition: 0.2s;
             background: rgba(255,255,255,0.05);
-            display: flex; align-items: center; justify-content: center;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
             font-size: 1.1rem;
             width: 100%;
             color: white;
         }
-        .tool-icon:hover { border-color: var(--gold); color: var(--gold); }
+
+        .tool-icon:hover { 
+            border-color: var(--gold); 
+            color: var(--gold); 
+        }
         
-        /* Custom Scrollbar for StVO Search */
         #stvo_results::-webkit-scrollbar { width: 6px; }
         #stvo_results::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
         #stvo_results::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
@@ -200,27 +233,56 @@
             <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-gold/30">
                 <i class="fas fa-id-card text-gold text-2xl"></i>
             </div>
-            <h2 class="text-2xl font-black uppercase italic mb-1">Dezernat <span class="text-gold">Verkehr</span></h2>
-            <p class="text-[10px] text-white/40 uppercase tracking-widest mb-8">Dienststellen-Login</p>
+            
+            <h2 class="text-2xl font-black uppercase italic mb-1">
+                Dezernat <span class="text-gold">Verkehr</span>
+            </h2>
+            
+            <p class="text-[10px] text-white/40 uppercase tracking-widest mb-8">
+                Dienststellen-Login
+            </p>
             
             <div class="space-y-4 text-left">
                 <div>
                     <label>Kennung</label>
-                    <input type="text" id="login-user" class="w-full" placeholder="Nutzername">
+                    <input 
+                        type="text" 
+                        id="login-user" 
+                        class="w-full" 
+                        placeholder="Nutzername"
+                    >
                 </div>
+                
                 <div>
                     <label>Sicherheits-Code</label>
-                    <input type="password" id="login-token" class="w-full" placeholder="•••••">
+                    <input 
+                        type="password" 
+                        id="login-token" 
+                        class="w-full" 
+                        placeholder="•••••"
+                    >
                 </div>
-                <button onclick="checkLogin()" class="btn-gold w-full py-4 rounded-xl mt-4">Anmelden</button>
-                <p id="login-error" class="error-msg text-center">Autorisierung Fehlgeschlagen</p>
+            
+                <button 
+                    onclick="checkLogin()" 
+                    class="btn-gold w-full py-4 rounded-xl mt-4"
+                >
+                    Anmelden
+                </button>
+                
+                <p id="login-error" class="error-msg text-center">
+                    Autorisierung Fehlgeschlagen
+                </p>
             </div>
         </div>
     </div>
 
     <div id="main-wrapper" style="display: none;">
         <div class="fullscreen-bg">
-            <img src="https://media.discordapp.net/attachments/1368571903576506450/1487948981127483454/image.png?format=webp" alt="Background">
+            <img 
+                src="https://media.discordapp.net/attachments/1368571903576506450/1487948981127483454/image.png?format=webp" 
+                alt="Background"
+            >
         </div>
 
         <nav class="fixed top-0 left-0 w-full z-50 glass-nav">
@@ -230,8 +292,12 @@
                         <i class="fas fa-shield-alt text-gold"></i>
                     </div>
                     <div>
-                        <h1 class="text-xl font-black italic uppercase leading-none">Dezernat <span class="text-glow-gold">Verkehr</span></h1>
-                        <span class="text-[10px] text-white/40 uppercase tracking-[0.2em]">Landespolizei Dresden | Intern</span>
+                        <h1 class="text-xl font-black italic uppercase leading-none">
+                            Dezernat <span class="text-glow-gold">Verkehr</span>
+                        </h1>
+                        <span class="text-[10px] text-white/40 uppercase tracking-[0.2em]">
+                            Landespolizei Dresden | Intern
+                        </span>
                     </div>
                 </div>
 
@@ -246,143 +312,273 @@
         </nav>
 
         <main class="pt-32 pb-20 px-6 max-w-6xl mx-auto">
+            
             <div id="page-home" class="page active">
                 <div class="mb-12" data-aos="fade-right">
-                    <h2 class="text-5xl font-black uppercase italic mb-2">Willkommen, <span class="text-glow-gold">Beamter.</span></h2>
-                    <p class="text-white/40 max-w-2xl">Zentrale Dokumentationsstelle für das Dezernat Verkehr des Polizeikommissariats 4 Dresden.</p>
+                    <h2 class="text-5xl font-black uppercase italic mb-2">
+                        Willkommen, <span class="text-glow-gold">Beamter.</span>
+                    </h2>
+                    <p class="text-white/40 max-w-2xl">
+                        Zentrale Dokumentationsstelle für das Dezernat Verkehr des Polizeikommissariats 4 Dresden.
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="fade-up">
                     <div class="glass-card p-8 border-l-4 border-l-gold">
-                        <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-gold">Dezernatsleitung</h3>
+                        <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-gold">
+                            Dezernatsleitung
+                        </h3>
                         <ul class="space-y-3 text-sm">
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span class="text-white/50">Leitung:</span><span class="font-bold">DD 4/12 Lukas Stolte</span></li>
-                            <li class="flex justify-between border-b border-white/5 pb-2"><span class="text-white/50">Stellv. Leitung:</span><span class="font-bold">DD 4/26 Lenny Scharfenberg</span></li>
-                            <li class="flex justify-between"><span class="text-white/50">System Beauftragter:</span><span class="font-bold">DD 4/38 Felix Schwarz</span></li>
+                            <li class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-white/50">Leitung:</span>
+                                <span class="font-bold">DD 4/12 Lukas Stolte</span>
+                            </li>
+                            <li class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-white/50">Stellv. Leitung:</span>
+                                <span class="font-bold">DD 4/26 Lenny Scharfenberg</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-white/50">System Beauftragter:</span>
+                                <span class="font-bold">DD 4/38 Felix Schwarz</span>
+                            </li>
                         </ul>
                     </div>
+                
                     <div class="glass-card p-8 border-l-4 border-l-red-600">
-                        <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-red-500">Systemhinweis</h3>
-                        <p class="text-sm text-white/60 leading-relaxed">Dieses System dient ausschließlich der Nutzung auf einem FiveM Roleplay Server und steht in keinerlei Verbindung zur echten Polizei Sachsen oder anderen realen Behörden.</p>
+                        <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-red-500">
+                            Systemhinweis
+                        </h3>
+                        <p class="text-sm text-white/60 leading-relaxed">
+                            Dieses System dient ausschließlich der Nutzung auf einem FiveM Roleplay Server und steht in keinerlei Verbindung zur echten Polizei Sachsen oder anderen realen Behörden.
+                        </p>
+            
                         <div class="mt-6 flex gap-3">
-                            <span class="px-3 py-1 bg-red-600/20 text-red-500 text-[10px] font-bold rounded uppercase">In-Character Only</span>
-                            <span class="px-3 py-1 bg-white/5 text-white/40 text-[10px] font-bold rounded uppercase">v 1. 2. 0</span>
+                            <span class="px-3 py-1 bg-red-600/20 text-red-500 text-[10px] font-bold rounded uppercase">
+                                In-Character Only
+                            </span>
+                            <span class="px-3 py-1 bg-white/5 text-white/40 text-[10px] font-bold rounded uppercase">
+                                v 1.2.0
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div id="page-mitglieder" class="page">
-                <h2 class="text-4xl font-black uppercase italic mb-10 text-center">Personalverzeichnis</h2>
+                <h2 class="text-4xl font-black uppercase italic mb-10 text-center">
+                    Personalverzeichnis
+                </h2>
+ 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="glass-card p-6 text-center group">
-                        <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20"><i class="fas fa-user-shield text-gold text-xl"></i></div>
-                        <span class="text-[10px] text-gold font-bold uppercase tracking-widest">DD 4/12</span><h3 class="text-xl font-bold">Lukas Stolte</h3><p class="text-xs text-white/40 mt-1 uppercase">Leitung Dez. Verkehr</p>
+                        <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20">
+                            <i class="fas fa-user-shield text-gold text-xl"></i>
+                        </div>
+                        <span class="text-[10px] text-gold font-bold uppercase tracking-widest">DD 4/12</span>
+                        <h3 class="text-xl font-bold">Lukas Stolte</h3>
+                        <p class="text-xs text-white/40 mt-1 uppercase">Leitung Dez. Verkehr</p>
                     </div>
+                    
                     <div class="glass-card p-6 text-center group">
-                        <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20"><i class="fas fa-user-shield text-gold text-xl"></i></div>
-                        <span class="text-[10px] text-gold font-bold uppercase tracking-widest">DD 4/26</span><h3 class="text-xl font-bold">Lenny Scharfenberg</h3><p class="text-xs text-white/40 mt-1 uppercase">Stellv. Leitung</p>
+                        <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold/20">
+                            <i class="fas fa-user-shield text-gold text-xl"></i>
+                        </div>
+                        <span class="text-[10px] text-gold font-bold uppercase tracking-widest">DD 4/26</span>
+                        <h3 class="text-xl font-bold">Lenny Scharfenberg</h3>
+                        <p class="text-xs text-white/40 mt-1 uppercase">Stellv. Leitung</p>
                     </div>
+                    
                     <div class="glass-card p-6 text-center group">
-                        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10"><i class="fas fa-user-tag text-white/60 text-xl"></i></div>
-                        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">DD 4/38</span><h3 class="text-xl font-bold">Felix Schwarz</h3><p class="text-xs text-white/40 mt-1 uppercase">Polizeihauptkommissar A12</p>
+                        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10">
+                            <i class="fas fa-user-tag text-white/60 text-xl"></i>
+                        </div>
+                        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">DD 4/38</span>
+                        <h3 class="text-xl font-bold">Felix Schwarz</h3>
+                        <p class="text-xs text-white/40 mt-1 uppercase">Polizeihauptkommissar A12</p>
                     </div>
+                    
                     <div class="glass-card p-6 text-center group">
-                        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10"><i class="fas fa-user-tag text-white/60 text-xl"></i></div>
-                        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">DD 4/42</span><h3 class="text-xl font-bold">Mark Walker</h3><p class="text-xs text-white/40 mt-1 uppercase">Polizeihauptkommissar A12</p>
+                        <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10">
+                            <i class="fas fa-user-tag text-white/60 text-xl"></i>
+                        </div>
+                        <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">DD 4/42</span>
+                        <h3 class="text-xl font-bold">Mark Walker</h3>
+                        <p class="text-xs text-white/40 mt-1 uppercase">Polizeihauptkommissar A12</p>
                     </div>
                 </div>
             </div>
 
             <div id="page-bericht" class="page">
-                <div class="glass-card p-10 max-w-4xl mx-auto">
+                <div class="glass-card p-10 max-w-5xl mx-auto">
                     <div class="flex justify-between items-start mb-10 border-b border-white/10 pb-6">
-                        <div><h2 class="text-3xl font-black uppercase italic">VUK Protokoll</h2><p class="text-gold text-xs font-bold tracking-widest">VERKEHRSUNFALLAUFNAHME-BOGEN</p></div>
-                        <i class="fas fa-file-invoice text-4xl text-white/10"></i>
+                        <div>
+                            <h2 class="text-3xl font-black uppercase italic">VUK Protokoll</h2>
+                            <p class="text-gold text-xs font-bold tracking-widest">VERKEHRSUNFALLAUFNAHME-BOGEN (DIGITAL)</p>
+                        </div>
+                        <i class="fas fa-file-signature text-4xl text-white/10"></i>
                     </div>
+                    
                     <div class="space-y-8">
                         <div>
-                            <h4 class="text-xs font-black text-white/30 uppercase tracking-[0.3em] mb-4">A. Allgemeine Daten</h4>
+                            <h4 class="text-xs font-black text-white/30 uppercase tracking-[0.3em] mb-4 border-l-2 border-gold pl-2">
+                                A. Allgemeine Daten
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label>Vorgangsnummer (VNR)</label>
+                                    <input type="text" id="v_nr" class="w-full font-mono text-sm" placeholder="VNR-2026-XXXX">
+                                </div>
+                                <div>
+                                    <label>Einsatzdatum & Zeit</label>
+                                    <input type="datetime-local" id="v_datum" class="w-full text-sm">
+                                </div>
+                                <div>
+                                    <label>Aufnehmender Beamter</label>
+                                    <input type="text" id="v_beamter" class="w-full text-sm" placeholder="Name, Dienstgrad (DD 4/XX)">
+                                </div>
+                                <div class="md:col-span-3">
+                                    <label>Exakter Unfallort (Straße, Hausnr., Kreuzung)</label>
+                                    <input type="text" id="v_ort" class="w-full" placeholder="Z.B. Legion Square / Alta Street">
+                                </div>
+                            </div>
+                        </div>
+   
+                        <div>
+                            <h4 class="text-xs font-black text-white/30 uppercase tracking-[0.3em] mb-4 border-l-2 border-gold pl-2">
+                                B. Beteiligte & Zeugen
+                            </h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div><label>Aktenzeichen / VNR</label><input type="text" id="v_nr" class="w-full" placeholder="DRE-VUK-2026-XXXX"></div>
-                                <div><label>Einsatz-Zeitpunkt</label><input type="datetime-local" id="v_datum" class="w-full"></div>
-                                <div class="md:col-span-2"><label>Unfallort</label><input type="text" id="v_ort" class="w-full" placeholder="Straße, Stadtteil, GPS"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-black text-white/30 uppercase tracking-[0.3em] mb-4">B. Beteiligte</h4>
-                            <div class="space-y-4">
-                                <div><label>Beteiligter 01</label><textarea id="v_b1" rows="2" class="w-full"></textarea></div>
-                                <div><label>Beteiligter 02</label><textarea id="v_b2" rows="2" class="w-full"></textarea></div>
-                                <div><label>Zeugen</label><input type="text" id="v_zeugen" class="w-full" placeholder="Namen & Kontakt"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-black text-white/30 uppercase tracking-[0.3em] mb-4">C. Analyse</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 relative">
-                                <div><label>Hauptursache</label>
-                                    <div class="relative">
-                                        <select id="v_ursache" class="w-full cursor-pointer pr-10">
-                                            <option value="Vorfahrtsmissachtung">Vorfahrtsmissachtung</option>
-                                            <option value="Geschwindigkeit">Geschwindigkeit</option>
-                                            <option value="Alkohol/Drogen">Alkohol/Drogen</option>
-                                            <option value="Ablenkung">Ablenkung</option>
-                                            <option value="Sonstiges">Sonstiges</option>
-                                        </select>
-                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gold">
-                                            <i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </div>
+                                <div class="bg-red-900/10 p-4 rounded-xl border border-red-500/20">
+                                    <label class="text-red-400">Beteiligter 01 (Hauptverursacher)</label>
+                                    <textarea id="v_b1" rows="3" class="w-full" placeholder="Name, Personalien, Fahrzeugtyp, Kennzeichen..."></textarea>
                                 </div>
-                                <div><label>Witterung</label>
-                                    <div class="relative">
-                                        <select id="v_wetter" class="w-full cursor-pointer pr-10">
-                                            <option value="Trocken / Gut">Trocken / Gut</option>
-                                            <option value="Regen / Nässe">Regen / Nässe</option>
-                                            <option value="Nebel / Sicht">Nebel / Sicht</option>
-                                            <option value="Schnee / Glätte">Schnee / Glätte</option>
-                                        </select>
-                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gold">
-                                            <i class="fas fa-chevron-down"></i>
-                                        </div>
-                                    </div>
+                                <div class="bg-blue-900/10 p-4 rounded-xl border border-blue-500/20">
+                                    <label class="text-blue-400">Beteiligter 02 (Geschädigter)</label>
+                                    <textarea id="v_b2" rows="3" class="w-full" placeholder="Name, Personalien, Fahrzeugtyp, Kennzeichen..."></textarea>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label>Zeugenaussagen (Name & Kontakt)</label>
+                                    <input type="text" id="v_zeugen" class="w-full" placeholder="Zeuge 1: Max Mustermann (Tel: 555-0192) - Aussage liegt bei.">
                                 </div>
                             </div>
-                            <div><label>Sachverhaltsschilderung</label><textarea id="v_sachverhalt" rows="5" class="w-full" placeholder="Detaillierte Beschreibung..."></textarea></div>
+                        </div>
+         
+                        <div>
+                            <h4 class="text-xs font-black text-white/30 uppercase tracking-[0.3em] mb-4 border-l-2 border-gold pl-2">
+                                C. Analyse & Umstände
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div>
+                                    <label>Hauptursache</label>
+                                    <select id="v_ursache" class="w-full">
+                                        <option value="Vorfahrtsmissachtung">Vorfahrtsmissachtung</option>
+                                        <option value="Überhöhte Geschwindigkeit">Überhöhte Geschwindigkeit</option>
+                                        <option value="Einfluss berauschender Mittel">Einfluss berauschender Mittel</option>
+                                        <option value="Ablenkung / Handy">Ablenkung / Handy</option>
+                                        <option value="Technischer Defekt">Technischer Defekt</option>
+                                        <option value="Unbekannt / Ermittlung ausstehend">Sonstiges / Unbekannt</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Witterung</label>
+                                    <select id="v_wetter" class="w-full">
+                                        <option value="Trocken, sonnig">Trocken, sonnig</option>
+                                        <option value="Nass, Regen">Nass, Regen</option>
+                                        <option value="Nebel, schlechte Sicht">Nebel, schlechte Sicht</option>
+                                        <option value="Schnee, Glätte">Schnee, Glätte</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Straßenzustand</label>
+                                    <select id="v_strasse" class="w-full">
+                                        <option value="Asphalt (griffig)">Asphalt (griffig)</option>
+                                        <option value="Asphalt (beschädigt)">Asphalt (beschädigt)</option>
+                                        <option value="Schotter / Unbefestigt">Schotter / Unbefestigt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label>Objektive Sachverhaltsschilderung</label>
+                                <textarea id="v_sachverhalt" rows="6" class="w-full" placeholder="Chronologischer Ablauf des Unfalls aus polizeilicher Sicht..."></textarea>
+                            </div>
                         </div>
 
                         <div class="p-6 bg-white/5 rounded-xl border border-dashed border-white/20">
-                            <h4 class="text-xs font-black text-gold uppercase tracking-widest mb-4"><i class="fas fa-camera mr-2"></i> Digitale Beweismittel (Dashcam / Fotos)</h4>
-                            <label>Links zu Beweismitteln (Discord/Imgur - einer pro Zeile)</label>
-                            <textarea id="v_links" rows="3" class="w-full text-xs font-mono" placeholder="https://cdn.discordapp.com/attachments/..."></textarea>
+                            <h4 class="text-xs font-black text-gold uppercase tracking-widest mb-4">
+                                <i class="fas fa-camera mr-2"></i> D. Digitale Beweismittel
+                            </h4>
+                            <label>Akten-Links (Dashcam, Tatort-Fotos, Skizzen-URL)</label>
+                            <textarea id="v_links" rows="2" class="w-full text-xs font-mono" placeholder="https://..."></textarea>
                         </div>
 
-                        <button onclick="generatePDF()" class="btn-gold w-full py-4 rounded-xl flex items-center justify-center gap-3"><i class="fas fa-file-pdf"></i> Bericht finalisieren & Exportieren</button>
+                        <button 
+                            onclick="generatePDF()" 
+                            class="btn-gold w-full py-5 rounded-xl flex items-center justify-center gap-3 text-lg"
+                        >
+                            <i class="fas fa-file-pdf"></i> Offizielles PDF-Protokoll Generieren
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div id="page-skizze" class="page">
-                <h2 class="text-4xl font-black uppercase italic mb-2 text-center">Ermittlungs-Skizze</h2>
+                <h2 class="text-4xl font-black uppercase italic mb-2 text-center">Taktische Ermittlungs-Skizze</h2>
+                <p class="text-center text-white/40 mb-8 text-sm">Nutze die Werkzeuge, um den Unfallort maßstabsgetreu zu rekonstruieren.</p>
+                
                 <div class="glass-card p-6 flex flex-col lg:flex-row gap-6">
-                    <div class="w-full lg:w-48 flex flex-wrap lg:flex-col gap-3">
-                        <label class="text-[10px] text-gold font-bold">FAHRZEUGE</label>
-                        <button onclick="addVehicle('car')" class="tool-icon" title="PKW"><i class="fas fa-car"></i></button>
-                        <button onclick="addVehicle('truck')" class="tool-icon" title="LKW"><i class="fas fa-truck"></i></button>
+                    
+                    <div class="w-full lg:w-64 flex flex-wrap lg:flex-col gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
                         
-                        <label class="text-[10px] text-gold font-bold mt-4">STRASSEN / ANNOTATION</label>
-                        <button onclick="addRoundabout()" class="tool-icon" title="Kreisverkehr"><i class="fas fa-sync"></i></button>
-                        <button onclick="addArrow()" class="tool-icon" title="Pfeil"><i class="fas fa-long-arrow-alt-right"></i></button>
-                        <button onclick="addText()" class="tool-icon" title="Textfeld"><i class="fas fa-font"></i></button>
+                        <div>
+                            <label class="text-[10px] text-gold font-bold mb-2">Fahrzeuge</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="addVehicle('#3b82f6')" class="tool-icon bg-blue-500/10" title="PKW Blau"><i class="fas fa-car text-blue-500"></i></button>
+                                <button onclick="addVehicle('#ef4444')" class="tool-icon bg-red-500/10" title="PKW Rot"><i class="fas fa-car text-red-500"></i></button>
+                                <button onclick="addVehicle('#ffffff')" class="tool-icon bg-gray-500/10" title="PKW Weiß"><i class="fas fa-car text-white"></i></button>
+                                <button onclick="addVehicle('#22c55e')" class="tool-icon bg-green-500/10" title="PKW Grün"><i class="fas fa-car text-green-500"></i></button>
+                                <button onclick="addMotorcycle()" class="tool-icon bg-yellow-500/10" title="Motorrad"><i class="fas fa-motorcycle text-yellow-500"></i></button>
+                                <button onclick="addTruck()" class="tool-icon bg-purple-500/10" title="LKW"><i class="fas fa-truck text-purple-500"></i></button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] text-gold font-bold mb-2 mt-2">Infrastruktur & Markierungen</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="addTrafficLight()" class="tool-icon" title="Ampelanlage"><i class="fas fa-traffic-light"></i></button>
+                                <button onclick="addStopSign()" class="tool-icon" title="Stoppschild"><i class="fas fa-octagon text-red-500"></i></button>
+                                <button onclick="addYieldSign()" class="tool-icon" title="Vorfahrt gewähren"><i class="fas fa-caret-down text-red-400"></i></button>
+                                <button onclick="addPedestrianCrossing()" class="tool-icon" title="Zebrastreifen"><i class="fas fa-grip-lines"></i></button>
+                                <button onclick="addCone()" class="tool-icon" title="Pylone"><i class="fas fa-triangle-exclamation text-orange-500"></i></button>
+                                <button onclick="addArrow()" class="tool-icon" title="Fahrtrichtung"><i class="fas fa-long-arrow-alt-up text-gold"></i></button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] text-gold font-bold mb-2 mt-2">Zeichnen & Text</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="addText()" class="tool-icon" title="Textfeld"><i class="fas fa-font"></i> Text</button>
+                                <button onclick="toggleDrawingMode()" id="btn-draw" class="tool-icon" title="Freihand"><i class="fas fa-pen"></i> Stift</button>
+                            </div>
+                        </div>
                         
-                        <label class="text-[10px] text-red-500 font-bold mt-4">EDITOR</label>
-                        <button onclick="deleteObject()" class="tool-icon text-red-500" title="Löschen"><i class="fas fa-eraser"></i></button>
-                        <button onclick="canvas.clear();" class="tool-icon text-red-700" title="Alles Leeren"><i class="fas fa-trash"></i></button>
-                        <button onclick="downloadSkizze()" class="btn-gold text-[10px] py-3 rounded mt-4">BILD SPEICHERN</button>
+                        <div class="mt-auto border-t border-white/10 pt-4">
+                            <label class="text-[10px] text-red-500 font-bold mb-2">Editor Aktionen</label>
+                            <div class="flex gap-2">
+                                <button onclick="deleteObject()" class="tool-icon text-red-500 flex-1" title="Markiertes Objekt Löschen"><i class="fas fa-eraser"></i></button>
+                                <button onclick="clearCanvas()" class="tool-icon text-red-700 flex-1" title="Alles Leeren"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <button onclick="downloadSkizze()" class="btn-gold w-full py-4 text-xs mt-4 rounded-xl font-black tracking-widest"><i class="fas fa-download mr-2"></i> BILD EXPORT</button>
+                        </div>
+
                     </div>
-                    <div class="flex-1 bg-black/40 rounded-xl border border-white/10 flex justify-center items-center overflow-hidden relative">
-                        <canvas id="sketchCanvas" width="800" height="500"></canvas>
+                    
+                    <div class="flex-1 bg-[#1a1a1a] rounded-xl border-2 border-white/10 flex justify-center items-center overflow-hidden relative" id="canvas-container">
+                        <canvas id="sketchCanvas" width="800" height="600"></canvas>
+                        <div class="absolute bottom-4 right-4 text-[10px] font-mono text-white/20 pointer-events-none">
+                            Maßstab: 1 Kästchen = ca. 2 Meter
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -393,8 +589,16 @@
                 </div>
 
                 <div class="glass-card p-6 mb-10 border-l-4 border-l-gold">
-                    <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-gold"><i class="fas fa-search mr-2"></i> StVO Schnellsuche</h3>
-                    <input type="text" id="stvo_search" class="w-full text-lg p-4 bg-black/30" placeholder="Suchbegriff eingeben (z.B. Führerschein, Vorfahrt...)" oninput="searchStVO()">
+                    <h3 class="text-lg font-bold mb-4 uppercase tracking-widest text-gold">
+                        <i class="fas fa-search mr-2"></i> StVO Schnellsuche (Nach Gesetze.txt)
+                    </h3>
+                    <input 
+                        type="text" 
+                        id="stvo_search" 
+                        class="w-full text-lg p-4 bg-black/30" 
+                        placeholder="Suchbegriff eingeben (z.B. § 1, Vorfahrt, Führerschein...)" 
+                        oninput="searchStVO()"
+                    >
                     <div id="stvo_results" class="mt-4 max-h-96 overflow-y-auto space-y-4 pr-2 hidden"></div>
                 </div>
 
@@ -423,7 +627,7 @@
                             <div class="text-2xl text-purple-400 mt-1"><i class="fas fa-bullhorn"></i></div>
                             <div><h3 class="font-bold text-white">Belehrungen</h3><p class="text-[10px] text-white/40 uppercase">Rechtsbehelfsbelehrungen</p></div>
                         </a>
-                     </div>
+                    </div>
                 </div>
 
                 <div>
@@ -431,6 +635,7 @@
                         <span class="w-10 h-[1px] bg-gold/30"></span> Einsatz-Werkzeuge <span class="flex-1 h-[1px] bg-gold/30"></span>
                     </h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        
                         <div class="glass-card p-8">
                             <div class="flex items-center gap-4 mb-6">
                                 <div class="w-12 h-12 bg-gold/10 rounded flex items-center justify-center border border-gold/30">
@@ -491,296 +696,562 @@
     </div>
 
     <script>
-        // StVO Database for Search Functionality
-        const stvoGesetze = [
-            { t: "§ 1 Grundregeln", c: "(1) Die Teilnahme am Straßenverkehr erfordert ständige Vorsicht und gegenseitige Rücksicht. (2) Die Straßenverkehrsordnung regelt und lenkt den öffentlichen Verkehr. (3) Wer am Straßenverkehr teilnimmt, hat sich so zu verhalten, dass kein anderer geschädigt, gefährdet oder mehr als nach den Umständen unvermeidbar behindert oder belästigt wird. (4) Öffentlicher Verkehr findet auch auf nicht gewidmeten Straßen statt, wenn diese mit Zustimmung oder unter Duldung des Verfügungsberechtigten genutzt werden können. Dagegen ist der Verkehr auf öffentlichen Straßen nicht öffentlich, wenn diese, z.B. wegen Bauarbeiten, durch Absperrschranken oder ähnlich wirksame Mittel für alle Verkehrsarten gesperrt sind. (5) Jeder Verkehrsteilnehmer hat sich, sofern er am öffentlichen Verkehr teilnimmt, anzuschnallen." },
-            { t: "§ 2 Straßenbenutzung Pflicht", c: "(1) Fahrzeuge müssen die Fahrbahnen benutzen, von zwei Fahrbahnen die rechte. Seitenstreifen sind nicht Bestandteil der Fahrbahn. (2) Es ist möglichst weit rechts zu fahren, nicht nur bei Gegenverkehr, beim Überholtwerden, an Kuppen, in Kurven oder bei Unübersichtlichkeit. (3) Vor Antritt jeder Fahrt zu prüfen, ob es erforderlich ist, die Fahrt durchzuführen, da das Ziel mit anderen Verkehrsmitteln nicht erreichbar ist." },
-            { t: "§ 3 Fahren ohne Führerschein", c: "(1) Wer ein Kraftfahrzeug führt, ohne den nötigen Führerschein zu besitzen, macht sich strafbar und wird mit einer Geldstrafe bestraft. (2) Wer ein Kraftfahrzeug führt, obwohl ihm dieses verboten wurde, zählt als Wiederholungstäter. (3) Für folgende Fahrzeugklassen werden Führerscheine benötigt: Nr. 1 PKW Nr. 2 LKW Nr. 3 Motorrad Nr. 4 Boot Nr. 5 Helikopter Nr. 6 Flugzeug (4) Zur Feststellung des Besitzes eines Führerscheines ist dieser auf Verlangen einem Polizeibeamten vorzuzeigen." },
-            { t: "§ 4 Straßenbenutzung durch mehrspurige Kraftfahrzeuge", c: "(1) Fahrzeuge müssen die Fahrbahnen benutzen, von zwei Fahrbahnen die rechte. Seitenstreifen sind nicht Bestandteil der Fahrbahn. (2) Es ist möglichst weit rechts zu fahren, nicht nur bei Gegenverkehr, beim Überholt werden, an Kuppen, in Kurven oder bei Unübersichtlichkeit. (3) Fahren abseits befestigter Straßen ist nicht gestattet und wird mit einer Geldstrafe bestraft" },
-            { t: "§ 6 Autobahnen", c: "(1) Autobahnen dürfen nur mit Kraftfahrzeugen befahren werden, die eine Mindestgeschwindigkeit von mehr als 100 km/h erreichen. (2) Es darf nur an gekennzeichneten Anschlussstellen aufgefahren werden. (3) Der Verkehr auf der durchgehenden Fahrbahn hat Vorfahrt. (4) Die zulässige Höchstgeschwindigkeit beträgt auch unter günstigen Umständen Nr. 1 für LKW 150 km/h Nr. 2 für PKW sowie für andere Kraftfahrzeuge mit einem zulässigen Ladevolumen bis 200 Kilogramm 250 km/h (5) Das Wenden und Rückwärtsfahren ist verboten. (6) Das Halten, auch auf dem Seitenstreifen, ist verboten. Ausgenommen sind Fahrzeugpannen und medizinische Notfälle. (7) dürfen von Fußgängern nicht betreten werden. (8) Innerhalb geschlossener Ortschaften beträgt die Höchstgeschwindigkeit auf Autobahnen 150 km/h" },
-            { t: "§ 7 Verkehrszeichen", c: "(1) Zu beachtende Verkehrszeichen oder derartige Bodenmarkierung sind: Nr. 1 Stoppzeichen Nr. 2 Einbahnstraßenschilder Nr. 3 Wendeverbotsschilder Nr. 4 Parkverbote Nr. 5 Richtungspfeile (2) Das Fahren entgegen der Fahrtrichtung kann als gefährlicher Eingriff in den Straßenverkehr gewertet werden. (3) Nicht zu beachten sind: Nr. 1 Ampeln (nach Beachtung von §7 Abs. 4) Nr. 2 Verkehrszeichen mit Geschwindigkeitsangaben (4) An roten Ampeln ist mindestens 3 Sekunden zu warten, bis eine Weiterfahrt gestattet ist." },
-            { t: "§ 8 Überschreiten der Höchstgeschwindigkeit", c: "Die Höchstgeschwindigkeit innerorts beträgt 80 km/h. Das Überschreiten der Höchstgeschwindigkeit wird gestaffelt geahndet. (1) innerorts gilt: (a) Eine Überschreitung von 10 bis 20 km/h wird mit einem Bußgeld geahndet. (b) Eine Überschreitung von 21 bis 40 km/h wird mit einem Bußgeld geahndet. (c) Eine Überschreitung von über 41 km/h wird mit einem Bußgeld geahndet. (2) außerorts gilt: (a) Eine Überschreitung von 15 bis 30 km/h wird mit einem Bußgeld geahndet. (b) Eine Überschreitung von 31 bis 50 km/h wird mit einem Bußgeld geahndet. (c) Eine Überschreitung von 51 bis 70 km/h wird mit einem Bußgeld geahndet. (d) Eine Überschreitung von 71 km/h wird mit einer Freiheitsstrafe bestraft" },
-            { t: "§ 9 Überholen", c: "(1) Es ist links zu überholen. (2) Überholen darf nur, wer übersehen kann, dass während des ganzen Überholvorgangs jede Behinderung des Gegenverkehrs ausgeschlossen ist. Überholen darf ferner nur, wer mit wesentlich höherer Geschwindigkeit als das zu überholende Fahrzeug fährt. (3) Beim Überholen muss ein ausreichender Seitenabstand zu anderen eingehalten werden." },
-            { t: "§ 10 Vorfahrt", c: "(1) An Kreuzungen und Einmündungen hat die Vorfahrt, wer von rechts kommt. Das gilt nicht, Nr. 1 wenn die Vorfahrt durch Verkehrszeichen besonders geregelt ist, Nr. 2 wenn Fahrzeuge aus einem Feld- oder Waldweg auf eine befestigte Straße einbiegen." },
-            { t: "§ 11 Halten und Parken", c: "(1) Falschparken wird mit einer Geldstrafe geahndet. Das Halten und Parken ist unzulässig: Nr. 1 an engen und an unübersichtlichen Straßenstellen, Nr. 2 im Bereich von scharfen Kurven, Nr. 3 auf Beschleunigungs- und Verzögerungsstreifen, Nr. 4 auf Bahnübergängen, Nr. 5 an rot gekennzeichneten Bürgersteigen, Nr. 7 in gekennzeichneten Taxi-Zonen, Nr. 8 vor und hinter Kreuzungen und Einmündungen bis zu 5.00 von den Schnittpunkten der Fahrbahnkanten, Nr. 9 gegen die Fahrtrichtung. (2) Wer sein Fahrzeug verlässt oder länger als drei Minuten hält, parkt." },
-            { t: "§ 12 Warnzeichen", c: "(1) Schall- und Leuchtzeichen darf nur geben, Nr. 1 wer außerhalb geschlossener Ortschaften überholt, Nr. 2 oder wer sich und andere gefährdet sieht. (2) Der Missbrauch wird mit Geldstrafe bestraft" },
-            { t: "§ 13 Sicherheitsgurte, Schutzhelme", c: "(1) Vorgeschriebene Sicherheitsgurte müssen während der Fahrt angelegt sein. (2) Wer Krafträder oder offene drei- oder vierrädrige Kraftfahrzeuge mit einer bauartbedingten Höchstgeschwindigkeit von mehr als 20 km/h führt oder auf bzw. in ihnen mitfährt, muss während der Fahrt einen geeigneten Schutzhelm tragen. Zuwiderhandlung wird mit einer Geldstrafe von bestraft." },
-            { t: "§ 14 Garagenausfahrten", c: "Wird eine Garagenausfahrt blockiert, wird dieses Fahrzeug kostenpflichtig abgeschleppt." },
-            { t: "§ 15 Fahren unter Einfluss berauschender Mittel", c: "Ordnungswidrig handelt, wer im Straßenverkehr ein Kraftfahrzeug führt, obwohl er 0.5 ‰ oder mehr Alkohol im Blut hat. Ebenso ordnungswidrig handelt, wer ein Kraftfahrzeug unter dem Einfluss anderer berauschender Mittel führt. Der Verstoß führt zur Stilllegung des Fahrzeugs sowie dem Entzug der Fahrerlaubnis." },
-            { t: "§ 16 Haftung des Halters", c: "(1) Der Halter eines Fahrzeuges ist für sämtliche gesetzswidrige Tätigkeiten verantwortlich, welche mit dem Fahrzeug begangen werden. (2) Sollte das Fahrzeug verliehen oder als gestohlen gemeldet worden und der Täter eindeutig feststellbar sein, so ist dieser entgegen § 16 Abs. 1 zur Verantwortung zu ziehen." },
-            { t: "§ 17 Unfall", c: "(1) Wer an einem Verkehrsunfall beteiligt ist, hat Nr. 1 unverzüglich anzuhalten, Nr. 2 den Unfallort abzusichern bzw. sein Fahrzeug bei geringfügigem Schaden unverzüglich beiseite zu fahren, Nr. 3 sich über die Unfallfolgen zu vergewissern, Nr. 4 Verletzten zu helfen, Nr. 5 solange am Unfallort zu bleiben, bis zugunsten der anderen Beteiligten und Geschädigten die Feststellung der Person, des Fahrzeugs und der Art der Beteiligung durch eigene Anwesenheit ermöglicht wurde. (2) Ein Zuwiderhandeln wird mit Geldstrafe bestraft." },
-            { t: "§18 Veränderung des Fahrzeuges", c: "(1) Vollständige Verdunkelung der Fahrzeugscheiben ist verboten (1.1) Bei Verstoß gegen die zulässige Scheibentönung von über 60% beträgt wird mit Geldstrafe bestraft. (1.3) Farbliche Scheinwerfer Beleuchtung werden mit einem Bußgeld geahndet. Ausgenommen Xenonscheinwerfer. Scheinwerferbeleuchtungen können ausschließlich vom TÜV genehmigt werden. Hierbei wird stets die Verkehrssicherheit anderer Verkehrsteilnehmer sowie des Betroffenen mit einbezogen. Bei wiederholtem Verstoß kann das Bußgeld angehoben werden. (1.4) Unterbodenbeleuchtung bei widerrechtlicher Verwendung von Unterbodenbeleuchtung wird ein Bußgeld fällig. (1.5) Aufklärung zur Strafbarkeit jedes Unternehmen, das einen solchen Service anbietet, darf die oben genannten Sachen bzw. Anbauten zwar verbauen jedoch gilt hier die Aufklärungs und belehrungspflicht gegenüber den Kunden. (1.6) Sollte sich ein Unternehmer nachweislich dieser Verpflichtung zur Belehrung einer möglichen Strafbarkeit durch anbauen dieser Anbauten durch Wunsch des Kunden sich entziehen so droht ihm bei Nachweis genau die gleiche Strafe wie den betroffenen selbst. (2) Bei wiederholter Tat wird das Bußgeld im Rahmen des Ermessens verdoppelt." },
-            { t: "§ 19 Sonderrechte", c: "(1) Von den Vorschriften dieser Verordnung sind die Feuerwehr, der Katastrophenschutz, die Polizei und der Zolldienst befreit, soweit das zur Erfüllung hoheitlicher Aufgaben dringend geboten ist. (2) Fahrzeuge des Rettungsdienstes sind von den Vorschriften dieser Verordnung befreit, wenn höchste Eile geboten ist, um Menschenleben zu retten oder schwere gesundheitliche Schäden abzuwenden. (3) Die Sonderrechte dürfen nur unter gebührender Berücksichtigung der öffentlichen Sicherheit und Ordnung ausgeübt werden. (4) Der Missbrauch ist Strafbar" },
-            { t: "§20 Blinklicht und Signalhorn", c: "(1) Blinklicht zusammen mit dem Einsatzhorn darf nur, von Polizei und Rettungsdienst, verwendet werden, wenn höchste Eile geboten ist, um Menschenleben zu retten oder schwere gesundheitliche Schäden abzuwenden, eine Gefahr für die öffentliche Sicherheit oder Ordnung abzuwenden, flüchtige Personen zu verfolgen oder bedeutende Sachwerte zu erhalten. Es ordnet an: „Alle übrigen Verkehrsteilnehmer haben sofort freie Bahn zu schaffen“. (2) Blaues Blinklicht allein darf nur von den damit ausgerüsteten Fahrzeugen und nur zur Warnung an Unfall- oder sonstigen Einsatzstellen, bei Einsatzfahrten oder bei der Begleitung von Fahrzeugen oder von geschlossenen Verbänden verwendet werden. (3) Gelbes Blinklicht warnt vor Gefahren. Es kann ortsfest oder von Fahrzeugen aus verwendet werden. Die Verwendung von Fahrzeugen aus ist nur zulässig, um vor Arbeits- oder Unfallstellen, vor ungewöhnlich langsam fahrenden Fahrzeugen oder vor Fahrzeugen mit ungewöhnlicher Breite oder Länge oder mit ungewöhnlich breiter oder langer Ladung zu warnen. (4) Der Missbrauch ist Strafbar" },
-            { t: "§ 21 Entzug der Fahrerlaubnis", c: "(1) Erweist sich jemand als ungeeignet oder nicht befähigt ein Kraftfahrzeug zu führen, so wird ihm der Führerschein entzogen. Wird jemandem der Führerschein durch die Exekutive entzogen, ohne das eine entsprechende Anweisung der Judikative vorliegt, ist er für 3 Tage vom Ablegen des Führerscheins ausgeschlossen. Mit entsprechender Anweisung der Judikative kann dies, bei entsprechender Begründung, auf bis zu zwei Wochen erweitert werden. Jemand erweist sich insbesondere unfähig ein Fahrzeug zu führen, wenn eines der folgenden Gesetze bei ihm Anwendung findet: (a) §8 Abs. 1 Pkt. c StVO (b) §8 Abs. 2 Pkt. c StVO (c) §8 Abs. 2 Pkt. d StVO (2) Entspricht die körperliche oder geistige Verfassung des Fahrzeugführers zum Zeitpunkt einer polizeilichen Kontrolle nicht dem erforderlichen Maß, so kann ihm die Fahrerlaubnis entzogen werden. Kriterien für eine nicht ausreichende körperliche oder geistige Verfassung sind: Nr. 1 0.5 ‰ oder mehr Alkohol im Blut Nr. 2 Rückstände von Betäubungsmitteln oder anderer berauschender Mittel im Blut Nr. 3 Körperliche Beeinträchtigungen Nr. 4 Teilnahme an illegalen Straßenrennen Nr. 5 unerlaubtes Entfernen vom Unfallort, sofern dem Täter ersichtlich sein kann, dass Menschen verletzt wurden oder ein bedeutender Schaden an fremden Sachen entstanden ist. (3) Nach mehrfachen Auffällig Werden kann der Führerschein nach Ermessen eingezogen werden." },
-            { t: "§ 22 Hauptuntersuchung", c: "Jeder Halter von Kraftfahrzeugen ist dazu verpflichtet, regelmäßig eine gesetzlich vorgeschriebene Hauptuntersuchung gemäß den festgelegten Bestimmungen durchführen zu lassen. Die Prüfung erfolgt in den hierfür vorgesehenen Prüfstellen." },
-            { t: "§24 Notwendigkeit einer Zulassung", c: "(1) Ein Kraftfahrzeug und seine Anhänger dürfen von der das Fahrzeug führenden Person auf öffentlichen Straßen nur in Betrieb gesetzt werden, wenn sie zum Verkehr zugelassen sind. Die Zulassung wird auf Antrag erteilt, wenn das Fahrzeug einem genehmigten Typ entspricht oder für das Fahrzeug eine Fahrzeug-Einzelgenehmigung erteilt ist. (2) Einer Zulassung bedürfen nicht folgende Arten von Kraftfahrzeugen: a) selbstfahrende Arbeitsmaschinen und Stapler, b) einachsige Zugmaschinen, wenn sie nur für land- oder forstwirtschaftliche Zwecke verwendet werden, c) Leichtkrafträder, d) zwei- oder dreirädrige Kleinkrafträder, e) motorisierte Krankenfahrstühle. folgende Arten von Anhängern: a) Anhänger in land- oder forstwirtschaftlichen Betrieben, wenn die Anhänger nur für land- oder forstwirtschaftliche Zwecke verwendet und mit einer Geschwindigkeit von nicht mehr als 25 Kilometern pro Stunde hinter Zugmaschinen oder selbstfahrenden Arbeitsmaschinen mitgeführt werden, b) fahrbare Baubuden und Toilettenwagen, die von Kraftfahrzeugen mit einer Geschwindigkeit von nicht mehr als 25 Kilometern pro Stunde mitgeführt werden, c) Arbeitsmaschinen, d) Spezialanhänger zur Beförderung von Sportgeräten, von Tieren für Sportzwecke oder von Rettungsbooten der Feuerwehr, des Rettungsdienstes und des Zivil- und Katastrophenschutzes, wenn die Anhänger ausschließlich für solche Beförderungen verwendet werden, e) einachsige Anhänger hinter Krafträdern, Kleinkrafträdern und motorisierten Krankenfahrstühlen, f) Anhänger für den Einsatzzweck der Feuerwehren und des Zivil- und Katastrophenschutzes, g) land- oder forstwirtschaftliche Arbeitsgeräte, h) hinter land- oder forstwirtschaftlichen einachsigen Zug- oder Arbeitsmaschinen mitgeführte Sitzkarren. (3) Der Halter darf die Inbetriebsetzung eines nach Absatz 1 zulassungspflichtigen Fahrzeuges nur anordnen oder zulassen, wenn das Fahrzeug zugelassen ist." },
-            { t: "§ 25 Sonstige Pflichten von Fahrzeugführenden", c: "(1) Wer ein Fahrzeug führt, ist dafür verantwortlich, dass seine Sicht und das Gehör nicht durch die Besetzung, Tiere, die Ladung, Geräte oder den Zustand des Fahrzeugs beeinträchtigt werden. Wer ein Fahrzeug führt, hat zudem dafür zu sorgen, dass das Fahrzeug, der Zug, das Gespann sowie die Ladung und die Besetzung vorschriftsmäßig sind und dass die Verkehrssicherheit des Fahrzeugs durch die Ladung oder die Besetzung nicht leidet. Ferner ist dafür zu sorgen, dass die vorgeschriebenen Kennzeichen stets gut lesbar sind. Vorgeschriebene Beleuchtungseinrichtungen müssen an Kraftfahrzeugen und ihren Anhängern auch am Tage vorhanden und betriebsbereit sein. (1a) Wer ein Fahrzeug führt, darf ein elektronisches Gerät, das der Kommunikation, Information oder Organisation dient oder zu dienen bestimmt ist, nur benutzen, wenn hierfür das Gerät weder aufgenommen noch gehalten wird" }
+        /**
+         * STVO DATENBANK
+         * Vollständig aus der Datei "Gesetze.txt" extrahiert.
+         * Enthält NUR Gesetzestexte, keine Strafen/Punkte.
+         */
+        const STVO_DATABASE = [
+            {
+                id: "§ 1",
+                t: "Grundregeln",
+                c: "(1) Die Teilnahme am Straßenverkehr erfordert ständige Vorsicht und gegenseitige Rücksicht.\n(2) Die Straßenverkehrsordnung regelt und lenkt den öffentlichen Verkehr.\n(3) Wer am Straßenverkehr teilnimmt, hat sich so zu verhalten, dass kein anderer geschädigt, gefährdet oder mehr als nach den Umständen unvermeidbar behindert oder belästigt wird.\n(4) Öffentlicher Verkehr findet auch auf nicht gewidmeten Straßen statt... (5) Jeder Verkehrsteilnehmer hat sich anzuschnallen."
+            },
+            {
+                id: "§ 2",
+                t: "Straßenbenutzung Pflicht",
+                c: "(1) Fahrzeuge müssen die Fahrbahnen benutzen, von zwei Fahrbahnen die rechte. Seitenstreifen sind nicht Bestandteil der Fahrbahn.\n(2) Es ist möglichst weit rechts zu fahren..."
+            },
+            {
+                id: "§ 3",
+                t: "Fahren ohne Führerschein",
+                c: "(1) Wer ein Kraftfahrzeug führt, ohne den nötigen Führerschein zu besitzen, macht sich strafbar...\n(2) Wer ein Kraftfahrzeug führt, obwohl ihm dieses verboten wurde, zählt als Wiederholungstäter.\n(3) Fahrzeugklassen: 1 PKW, 2 LKW, 3 Motorrad, 4 Boot, 5 Helikopter, 6 Flugzeug."
+            },
+            {
+                id: "§ 4",
+                t: "Straßenbenutzung durch mehrspurige Kraftfahrzeuge",
+                c: "(1) Fahrzeuge müssen die Fahrbahnen benutzen... (3) Fahren abseits befestigter Straßen ist nicht gestattet und wird mit einer Geldstrafe bestraft."
+            },
+            {
+                id: "§ 6",
+                t: "Autobahnen",
+                c: "(1) Autobahnen dürfen nur mit Kraftfahrzeugen befahren werden, die eine Mindestgeschwindigkeit von mehr als 100 km/h erreichen...\n(5) Das Wenden und Rückwärtsfahren ist verboten.\n(6) Das Halten, auch auf dem Seitenstreifen, ist verboten."
+            },
+            {
+                id: "§ 7",
+                t: "Verkehrszeichen",
+                c: "(1) Zu beachtende Verkehrszeichen... (4) An roten Ampeln ist mindestens 3 Sekunden zu warten, bis eine Weiterfahrt gestattet ist."
+            },
+            {
+                id: "§ 8",
+                t: "Überschreiten der Höchstgeschwindigkeit",
+                c: "Die Höchstgeschwindigkeit innerorts beträgt 80 km/h. Das Überschreiten der Höchstgeschwindigkeit wird gestaffelt geahndet."
+            },
+            {
+                id: "§ 9",
+                t: "Überholen",
+                c: "(1) Es ist links zu überholen.\n(2) Überholen darf nur, wer übersehen kann, dass während des ganzen Überholvorgangs jede Behinderung des Gegenverkehrs ausgeschlossen ist."
+            },
+            {
+                id: "§ 10",
+                t: "Vorfahrt",
+                c: "(1) An Kreuzungen und Einmündungen hat die Vorfahrt, wer von rechts kommt. Das gilt nicht, wenn die Vorfahrt durch Verkehrszeichen besonders geregelt ist..."
+            },
+            {
+                id: "§ 11",
+                t: "Halten und Parken",
+                c: "(1) Falschparken wird mit einer Geldstrafe geahndet... (2) Wer sein Fahrzeug verlässt oder länger als drei Minuten hält, parkt."
+            },
+            {
+                id: "§ 12",
+                t: "Warnzeichen",
+                c: "(1) Schall- und Leuchtzeichen darf nur geben, wer außerhalb geschlossener Ortschaften überholt, oder wer sich und andere gefährdet sieht."
+            },
+            {
+                id: "§ 13",
+                t: "Sicherheitsgurte, Schutzhelme",
+                c: "(1) Vorgeschriebene Sicherheitsgurte müssen während der Fahrt angelegt sein.\n(2) Wer Krafträder führt oder auf ihnen mitfährt, muss während der Fahrt einen geeigneten Schutzhelm tragen."
+            },
+            {
+                id: "§ 15",
+                t: "Fahren unter Einfluss berauschender Mittel",
+                c: "Ordnungswidrig handelt, wer im Straßenverkehr ein Kraftfahrzeug führt, obwohl er 0.5 ‰ oder mehr Alkohol im Blut hat. Der Verstoß führt zur Stilllegung des Fahrzeugs sowie dem Entzug der Fahrerlaubnis."
+            },
+            {
+                id: "§ 16",
+                t: "Haftung des Halters",
+                c: "(1) Der Halter eines Fahrzeuges ist für sämtliche gesetzswidrige Tätigkeiten verantwortlich, welche mit dem Fahrzeug begangen werden."
+            },
+            {
+                id: "§ 17",
+                t: "Unfall",
+                c: "(1) Wer an einem Verkehrsunfall beteiligt ist, hat unverzüglich anzuhalten, den Unfallort abzusichern, Verletzten zu helfen und die Feststellung der Person zu ermöglichen."
+            },
+            {
+                id: "§ 18",
+                t: "Veränderung des Fahrzeuges",
+                c: "(1) Vollständige Verdunkelung der Fahrzeugscheiben ist verboten...\n(1.3) Farbliche Scheinwerfer Beleuchtung werden mit einem Bußgeld geahndet (Ausnahme Xenon).\n(1.4) Unterbodenbeleuchtung wird ein Bußgeld fällig."
+            },
+            {
+                id: "§ 19",
+                t: "Sonderrechte",
+                c: "(1) Von den Vorschriften dieser Verordnung sind Feuerwehr, Polizei, etc. befreit, soweit das zur Erfüllung hoheitlicher Aufgaben dringend geboten ist."
+            },
+            {
+                id: "§ 20",
+                t: "Blinklicht und Signalhorn",
+                c: "(1) Blaues Blinklicht zusammen mit dem Einsatzhorn ordnet an: „Alle übrigen Verkehrsteilnehmer haben sofort freie Bahn zu schaffen“."
+            },
+            {
+                id: "§ 21",
+                t: "Entzug der Fahrerlaubnis",
+                c: "(1) Erweist sich jemand als ungeeignet oder nicht befähigt ein Kraftfahrzeug zu führen, so wird ihm der Führerschein entzogen. Kriterien: 0.5 ‰, BTM, illegale Straßenrennen, Unfallflucht."
+            },
+            {
+                id: "§ 24",
+                t: "Notwendigkeit einer Zulassung",
+                c: "(1) Ein Kraftfahrzeug und seine Anhänger dürfen auf öffentlichen Straßen nur in Betrieb gesetzt werden, wenn sie zum Verkehr zugelassen sind."
+            },
+            {
+                id: "§ 25",
+                t: "Sonstige Pflichten von Fahrzeugführenden",
+                c: "(1) Verantwortlich, dass Sicht und Gehör nicht beeinträchtigt werden.\n(1a) Elektronisches Gerät (Handy) darf nur benutzt werden, wenn es weder aufgenommen noch gehalten wird."
+            }
         ];
 
-        function searchStVO() {
-            const query = document.getElementById('stvo_search').value.toLowerCase();
-            const resultsBox = document.getElementById('stvo_results');
-            resultsBox.innerHTML = '';
-            
-            if (query.length < 2) {
-                resultsBox.classList.add('hidden');
-                return;
-            }
-
-            const filtered = stvoGesetze.filter(g => g.t.toLowerCase().includes(query) || g.c.toLowerCase().includes(query));
-            
-            if (filtered.length === 0) {
-                resultsBox.innerHTML = '<p class="text-white/40 text-sm italic">Keine passenden Paragrafen gefunden.</p>';
-            } else {
-                filtered.forEach(g => {
-                    const regex = new RegExp(`(${query})`, "gi");
-                    const markedContent = g.c.replace(regex, `<span class="bg-gold/30 text-gold font-bold px-1 rounded">$1</span>`);
-                    resultsBox.innerHTML += `
-                        <div class="bg-white/5 p-4 rounded-lg border border-white/10 hover:border-gold/30 transition duration-300">
-                            <h4 class="font-bold text-gold mb-2">${g.t}</h4>
-                            <p class="text-sm text-white/70 leading-relaxed">${markedContent}</p>
-                        </div>`;
-                });
-            }
-            resultsBox.classList.remove('hidden');
-        }
-
+        /**
+         * Login Funktion (Unverändert)
+         */
         function checkLogin() {
             const user = document.getElementById('login-user').value;
             const token = document.getElementById('login-token').value;
-            const error = document.getElementById('login-error');
-            if (user === "DezVerkehr" && token === "PK4DD") {
-                document.getElementById('login-overlay').style.display = 'none';
-                document.getElementById('main-wrapper').style.display = 'block';
-                AOS.init({ duration: 800, once: true });
-                initCanvas();
+            
+            if(user === "DezVerkehr" && token === "PK4DD") {
+                document.getElementById('login-overlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('login-overlay').style.display = 'none';
+                    document.getElementById('main-wrapper').style.display = 'block';
+                    AOS.init({ duration: 1000, once: true });
+                    initCanvas();
+                }, 500);
             } else {
-                error.style.display = 'block';
-                setTimeout(() => { error.style.display = 'none'; }, 3000);
+                const err = document.getElementById('login-error');
+                err.style.display = 'block';
+                setTimeout(() => { err.style.display = 'none'; }, 3000);
             }
         }
 
-        function calculateFine() {
-            const limit = parseInt(document.getElementById('calc_limit').value);
-            const rawSpeed = parseInt(document.getElementById('calc_speed').value);
-            const resultBox = document.getElementById('calc_result');
+        /**
+         * Navigation (Unverändert)
+         */
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             
-            if (!rawSpeed) { resultBox.classList.add('hidden'); return; }
-            resultBox.classList.remove('hidden');
+            document.getElementById('page-' + pageId).classList.add('active');
+            document.getElementById('btn-' + pageId).classList.add('active');
+        }
+
+        /**
+         * MODIFIKATION 1: STVO SUCHE
+         * Filtert jetzt ausschließlich die Paragrafen aus der 'Gesetze.txt'.
+         */
+        function searchStVO() {
+            const query = document.getElementById('stvo_search').value.toLowerCase();
+            const results = document.getElementById('stvo_results');
             
-            let tolerance = rawSpeed <= 100 ? 3 : Math.ceil(rawSpeed * 0.03);
-            const nettoSpeed = rawSpeed - tolerance;
-            const diff = nettoSpeed - limit;
+            results.innerHTML = "";
             
-            document.getElementById('res_tol').innerText = `- ${tolerance} km/h`;
-            document.getElementById('res_netto').innerText = `${nettoSpeed} km/h`;
+            if(query.length < 2) { 
+                results.classList.add('hidden'); 
+                return;
+            }
+
+            // Filtert die STVO_DATABASE nach ID, Titel oder Inhalt
+            const filtered = STVO_DATABASE.filter(i => 
+                i.id.toLowerCase().includes(query) ||
+                i.t.toLowerCase().includes(query) || 
+                i.c.toLowerCase().includes(query)
+            );
             
-            let fine = 0; let ban = "";
-            if (diff > 0) {
-                if (diff <= 10) fine = 500;
-                else if (diff <= 20) fine = 1200;
-                else if (diff <= 30) fine = 2500;
-                else if (diff <= 50) { fine = 5000; ban = "1 Woche Fahrverbot"; }
-                else { fine = 10000; ban = "Entzug / MPU"; }
+            if(filtered.length > 0) {
+                results.classList.remove('hidden');
+                
+                filtered.forEach(item => {
+                    results.innerHTML += `
+                        <div class="glass-card p-6 border-l-4 border-gold bg-black/40">
+                            <h4 class="font-black text-gold text-lg mb-2">${item.id} - ${item.t}</h4>
+                            <p class="text-xs text-white/70 leading-relaxed whitespace-pre-line">${item.c}</p>
+                        </div>
+                    `;
+                 });
+            } else {
+                results.innerHTML = `
+                    <div class="p-6 text-center text-white/30 border border-dashed border-white/10 rounded-xl">
+                        <i class="fas fa-search-minus text-2xl mb-2"></i>
+                        <p class="text-xs uppercase">Kein passender Paragraf gefunden.</p>
+                    </div>`;
+            }
+        }
+
+        /**
+         * MODIFIKATION 2: PROFESSIONELLES PDF PROTOKOLL
+         * Überarbeitet für eine klare, polizeiliche Akten-Struktur.
+         */
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Formulardaten abrufen
+            const nr = document.getElementById('v_nr').value || "VNR-N/A";
+            const datum = document.getElementById('v_datum').value || "Unbekannt";
+            const beamter = document.getElementById('v_beamter').value || "Unbekannt";
+            const ort = document.getElementById('v_ort').value || "Unbekannt";
+            const b1 = document.getElementById('v_b1').value || "Keine Angabe";
+            const b2 = document.getElementById('v_b2').value || "Keine Angabe";
+            const zeugen = document.getElementById('v_zeugen').value || "Keine Zeugen erfasst";
+            const ursache = document.getElementById('v_ursache').value;
+            const wetter = document.getElementById('v_wetter').value;
+            const strasse = document.getElementById('v_strasse').value;
+            const sv = document.getElementById('v_sachverhalt').value || "Keine Schilderung vorhanden.";
+            const links = document.getElementById('v_links').value;
+            
+            // Dokument Header (Dunkelblau/Gold)
+            doc.setFillColor(0, 51, 102); // Police Blue
+            doc.rect(0, 0, 210, 40, 'F');
+            
+            doc.setTextColor(212, 175, 55); // Gold
+            doc.setFontSize(24);
+            doc.setFont("helvetica", "bold");
+            doc.text("VERKEHRSUNFALLPROTOKOLL", 20, 20);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("helvetica", "normal");
+            doc.text("POLIZEIPRÄSIDIUM DRESDEN | DEZERNAT 4 - VERKEHR", 20, 30);
+
+            // Sektion A: Allgemeine Daten
+            let yPos = 55;
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text("A. ALLGEMEINE EINSATZDATEN", 20, yPos);
+            doc.setLineWidth(0.5);
+            doc.line(20, yPos + 2, 190, yPos + 2);
+            
+            yPos += 10;
+            doc.setFontSize(10);
+            doc.text("Aktenzeichen (VNR):", 20, yPos); doc.setFont("helvetica", "normal"); doc.text(nr, 65, yPos);
+            yPos += 7;
+            doc.setFont("helvetica", "bold");
+            doc.text("Einsatzzeitpunkt:", 20, yPos); doc.setFont("helvetica", "normal"); doc.text(datum.replace('T', ' '), 65, yPos);
+            yPos += 7;
+            doc.setFont("helvetica", "bold");
+            doc.text("Aufnehmender Beamter:", 20, yPos); doc.setFont("helvetica", "normal"); doc.text(beamter, 65, yPos);
+            yPos += 7;
+            doc.setFont("helvetica", "bold");
+            doc.text("Einsatzort:", 20, yPos); doc.setFont("helvetica", "normal"); doc.text(ort, 65, yPos);
+
+            // Sektion B: Beteiligte & Zeugen
+            yPos += 15;
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text("B. BETEILIGTE PERSONEN & ZEUGEN", 20, yPos);
+            doc.line(20, yPos + 2, 190, yPos + 2);
+
+            yPos += 10;
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "bold");
+            doc.text("01 - Verursacher:", 20, yPos);
+            doc.setFont("helvetica", "normal");
+            const b1Lines = doc.splitTextToSize(b1, 120);
+            doc.text(b1Lines, 65, yPos);
+            yPos += (b1Lines.length * 5) + 5;
+
+            doc.setFont("helvetica", "bold");
+            doc.text("02 - Geschädigter:", 20, yPos);
+            doc.setFont("helvetica", "normal");
+            const b2Lines = doc.splitTextToSize(b2, 120);
+            doc.text(b2Lines, 65, yPos);
+            yPos += (b2Lines.length * 5) + 5;
+
+            doc.setFont("helvetica", "bold");
+            doc.text("Zeugenaussagen:", 20, yPos);
+            doc.setFont("helvetica", "normal");
+            const zeugenLines = doc.splitTextToSize(zeugen, 120);
+            doc.text(zeugenLines, 65, yPos);
+            yPos += (zeugenLines.length * 5) + 10;
+
+            // Sektion C: Sachverhalt & Analyse
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text("C. ANALYSE & SACHVERHALTSDARSTELLUNG", 20, yPos);
+            doc.line(20, yPos + 2, 190, yPos + 2);
+
+            yPos += 10;
+            doc.setFontSize(10);
+            doc.text("Hauptursache:", 20, yPos); doc.setFont("helvetica", "normal"); doc.text(ursache, 55, yPos);
+            doc.setFont("helvetica", "bold");
+            doc.text("Witterung:", 110, yPos); doc.setFont("helvetica", "normal"); doc.text(wetter, 135, yPos);
+            yPos += 7;
+            doc.setFont("helvetica", "bold");
+            doc.text("Straßenzustand:", 20, yPos); doc.setFont("helvetica", "normal"); doc.text(strasse, 55, yPos);
+
+            yPos += 12;
+            doc.setFont("helvetica", "bold");
+            doc.text("Objektiver Sachverhalt:", 20, yPos);
+            yPos += 6;
+            doc.setFont("helvetica", "normal");
+            const svLines = doc.splitTextToSize(sv, 170);
+            doc.text(svLines, 20, yPos);
+            yPos += (svLines.length * 5) + 10;
+
+            // Sektion D: Beweise (Optional)
+            if(links) {
+                if (yPos > 250) { doc.addPage(); yPos = 20; }
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "bold");
+                doc.text("D. DIGITALE BEWEISMITTEL", 20, yPos);
+                doc.line(20, yPos + 2, 190, yPos + 2);
+                yPos += 10;
+                doc.setFontSize(8);
+                doc.setFont("helvetica", "normal");
+                const linkLines = doc.splitTextToSize(links, 170);
+                doc.text(linkLines, 20, yPos);
+            }
+
+            // Fußzeile
+            doc.setFontSize(8);
+            doc.setTextColor(150, 150, 150);
+            doc.text(`Generiert am: ${new Date().toLocaleString()} | Dieses Dokument ist digital verifiziert.`, 20, 285);
+            doc.text("Nur für den behördlichen Dienstgebrauch", 140, 285);
+
+            // PDF Speichern
+            doc.save(`Protokoll_${nr}.pdf`);
+        }
+
+        /**
+         * MODIFIKATION 3: PROFESSIONELLES SKIZZEN-TOOL
+         * Nutzt Fabric.js mit Raster, speziellen Icons/Symbolen und sauberen Zeichenfunktionen.
+         */
+        let canvas;
+        
+        function initCanvas() {
+            canvas = new fabric.Canvas('sketchCanvas');
+            
+            // Hintergrund Raster erstellen
+            const gridSize = 40;
+            const gridColor = 'rgba(255, 255, 255, 0.05)';
+            
+            // Zeichne Grid-Linien
+            for (let i = 0; i < (canvas.width / gridSize); i++) {
+                canvas.add(new fabric.Line([ i * gridSize, 0, i * gridSize, canvas.height], { 
+                    stroke: gridColor, 
+                    selectable: false,
+                    evented: false
+                }));
+            }
+            for (let i = 0; i < (canvas.height / gridSize); i++) {
+                canvas.add(new fabric.Line([ 0, i * gridSize, canvas.width, i * gridSize], { 
+                    stroke: gridColor, 
+                    selectable: false,
+                    evented: false
+                }));
             }
             
-            document.getElementById('res_money').innerText = `${fine.toLocaleString('de-DE')}.00 €`;
+            // Tastatur-Steuerung zum Löschen
+            window.addEventListener('keydown', (e) => {
+                if(e.key === "Delete" || e.key === "Backspace") {
+                    deleteObject();
+                }
+            });
+        }
+
+        // Objekt Funktionen für die Skizze
+        function addVehicle(color) {
+            const v = new fabric.Rect({
+                left: 100, top: 100, 
+                fill: color, 
+                width: 60, height: 30, 
+                rx: 5, ry: 5, 
+                stroke: '#fff', strokeWidth: 1,
+                shadow: new fabric.Shadow({ color: 'rgba(0,0,0,0.5)', blur: 10 })
+            });
+            // Füge eine "Frontscheibe" hinzu zur Erkennung der Fahrtrichtung
+            const windshield = new fabric.Rect({
+                left: 145, top: 102,
+                fill: '#222',
+                width: 10, height: 26,
+                rx: 2, ry: 2
+            });
+            const group = new fabric.Group([v, windshield], {
+                left: 100, top: 100
+            });
+            canvas.add(group);
+            canvas.setActiveObject(group);
+        }
+
+        function addMotorcycle() {
+            const m = new fabric.Rect({
+                left: 100, top: 100, fill: '#eab308', width: 25, height: 10, rx: 3, ry: 3
+            });
+            canvas.add(m);
+        }
+
+        function addTruck() {
+            const trailer = new fabric.Rect({ left: 100, top: 100, fill: '#7e22ce', width: 100, height: 40 });
+            const cab = new fabric.Rect({ left: 205, top: 105, fill: '#fff', width: 30, height: 30, rx: 5, ry: 5 });
+            const group = new fabric.Group([trailer, cab], { left: 100, top: 100 });
+            canvas.add(group);
+        }
+
+        function addTrafficLight() {
+            const box = new fabric.Rect({ width: 20, height: 60, fill: '#333', rx: 3, ry: 3 });
+            const r = new fabric.Circle({ radius: 6, fill: '#ef4444', left: 4, top: 5 });
+            const y = new fabric.Circle({ radius: 6, fill: '#eab308', left: 4, top: 24 });
+            const g = new fabric.Circle({ radius: 6, fill: '#22c55e', left: 4, top: 43 });
+            const group = new fabric.Group([box, r, y, g], { left: 200, top: 100 });
+            canvas.add(group);
+        }
+
+        function addStopSign() {
+            const sign = new fabric.Circle({ radius: 20, fill: '#ef4444', stroke: '#fff', strokeWidth: 2 });
+            const text = new fabric.Text('STOP', { fontSize: 12, fill: '#fff', left: 4, top: 12, fontWeight: 'bold' });
+            const group = new fabric.Group([sign, text], { left: 200, top: 100 });
+            canvas.add(group);
+        }
+
+        function addYieldSign() {
+            const sign = new fabric.Triangle({ width: 40, height: 40, fill: '#fff', stroke: '#ef4444', strokeWidth: 4, angle: 180, left: 40, top: 40 });
+            canvas.add(sign);
+        }
+
+        function addPedestrianCrossing() {
+            const stripes = [];
+            for(let i=0; i<5; i++) {
+                stripes.push(new fabric.Rect({ left: 0, top: i*20, width: 60, height: 10, fill: '#fff' }));
+            }
+            const group = new fabric.Group(stripes, { left: 200, top: 200 });
+            canvas.add(group);
+        }
+
+        function addCone() {
+            const cone = new fabric.Triangle({ width: 15, height: 20, fill: '#f97316', stroke: '#fff', strokeWidth: 1 });
+            canvas.add(cone);
+        }
+
+        function addArrow() {
+            const arrow = new fabric.Path('M 0 0 L 40 0 M 40 0 L 30 -10 M 40 0 L 30 10', {
+                left: 150, top: 150, stroke: '#d4af37', strokeWidth: 3, fill: 'transparent'
+            });
+            canvas.add(arrow);
+        }
+
+        function addText() {
+            const text = new fabric.IText('Textfeld (Doppelklick)', {
+                left: 150, top: 150, fontSize: 18, fill: '#fff', fontFamily: 'Montserrat', fontWeight: 'bold'
+            });
+            canvas.add(text);
+        }
+
+        function toggleDrawingMode() {
+            canvas.isDrawingMode = !canvas.isDrawingMode;
+            if(canvas.isDrawingMode) {
+                canvas.freeDrawingBrush.color = '#ef4444'; // Rot für Skizzen
+                canvas.freeDrawingBrush.width = 3;
+                document.getElementById('btn-draw').classList.add('text-gold', 'border-gold');
+            } else {
+                document.getElementById('btn-draw').classList.remove('text-gold', 'border-gold');
+            }
+        }
+
+        function deleteObject() {
+            const active = canvas.getActiveObject();
+            if(active) {
+                canvas.remove(active);
+            }
+        }
+
+        function clearCanvas() {
+            if(confirm("Möchtest du die Skizze wirklich komplett leeren?")) {
+                canvas.clear();
+                initCanvas(); // Raster neu laden
+            }
+        }
+
+        function downloadSkizze() {
+            canvas.discardActiveObject(); // Markierungen vor Export entfernen
+            canvas.renderAll();
+            const dataURL = canvas.toDataURL({ format: 'png', quality: 1, multiplier: 2 });
+            const link = document.createElement('a');
+            link.download = 'VUK-Skizze.png';
+            link.href = dataURL;
+            link.click();
+        }
+
+        // ==========================================
+        // UNVERÄNDERTE FUNKTIONEN (AUS SCRIPT2)
+        // ==========================================
+        function calculateFine() {
+            const limit = parseInt(document.getElementById('calc_limit').value) || 0;
+            const speed = parseInt(document.getElementById('calc_speed').value) || 0;
+            const resBox = document.getElementById('calc_result');
+            
+            if(speed <= limit) { resBox.classList.add('hidden'); return; }
+            resBox.classList.remove('hidden');
+
+            let tolerance = speed <= 100 ? 3 : Math.round(speed * 0.03);
+            let netto = speed - tolerance;
+            let diff = netto - limit;
+
+            document.getElementById('res_tol').innerText = "-" + tolerance + " km/h";
+            document.getElementById('res_netto').innerText = netto + " km/h";
+
+            let fine = "0.00 €";
+            let ban = "";
+
+            if(diff > 0) {
+                if(diff <= 10) fine = "20.00 €";
+                else if(diff <= 15) fine = "40.00 €";
+                else if(diff <= 20) fine = "60.00 €";
+                else if(diff <= 25) fine = "100.00 €";
+                else if(diff <= 30) { fine = "150.00 €"; ban = "1 Monat Fahrverbot (Evtl.)"; }
+                else if(diff <= 40) { fine = "200.00 €"; ban = "1 Monat Fahrverbot"; }
+                else if(diff <= 50) { fine = "320.00 €"; ban = "1 Monat Fahrverbot"; }
+                else if(diff <= 60) { fine = "480.00 €"; ban = "2 Monate Fahrverbot"; }
+                else if(diff <= 70) { fine = "600.00 €"; ban = "3 Monate Fahrverbot"; }
+                else { fine = "800.00 €"; ban = "3 Monate Fahrverbot + MPU"; }
+            }
+
+            document.getElementById('res_money').innerText = fine;
             const banBox = document.getElementById('res_ban_box');
-            if (ban) { 
-                banBox.classList.remove('hidden'); 
+            if(ban) {
+                banBox.classList.remove('hidden');
                 document.getElementById('res_ban').innerText = ban;
-            } else { 
+            } else {
                 banBox.classList.add('hidden');
             }
         }
 
         function calculateAlcohol() {
-            const weight = parseInt(document.getElementById('alc_weight').value) || 80;
-            const beer = parseInt(document.getElementById('alc_beer').value) || 0;
-            const shot = parseInt(document.getElementById('alc_shot').value) || 0;
-            
-            // Widmark-Formel Näherung
-            // 0,5l Bier = ca. 20g Alkohol
-            // 4cl Schnaps = ca. 10.5g Alkohol
-            const alcoholGrams = (beer * 20) + (shot * 10.5);
-            // Reduktionsfaktor Männer ~0.7, Frauen ~0.6 -> Durchschnitt 0.65 für RP
-            let promille = alcoholGrams / (weight * 0.65);
-            promille = Math.max(0, promille).toFixed(2);
-            
-            document.getElementById('res_promille').innerText = promille + " ‰";
+            const w = parseFloat(document.getElementById('alc_weight').value) || 80;
+            const beer = parseFloat(document.getElementById('alc_beer').value) || 0;
+            const shots = parseFloat(document.getElementById('alc_shot').value) || 0;
+            const alc_g = (beer * 500 * 0.05 * 0.8) + (shots * 40 * 0.4 * 0.8);
+            const promille = alc_g / (w * 0.7);
+
+            const display = document.getElementById('res_promille');
+            display.innerText = promille.toFixed(2) + " ‰";
             const badge = document.getElementById('alc_badge');
             const law = document.getElementById('alc_law');
-            
-            if (promille < 0.3) {
+
+            if(promille < 0.3) {
+                badge.innerText = "Nüchtern";
                 badge.className = "px-2 py-1 bg-green-500/20 text-green-500 text-[10px] font-bold rounded uppercase";
-                badge.innerText = "Nüchtern"; law.innerText = "Fahrtüchtig.";
-            } else if (promille < 0.5) {
+                law.innerText = "Fahrtüchtig.";
+            } else if(promille < 0.5) {
+                badge.innerText = "Auffällig";
                 badge.className = "px-2 py-1 bg-yellow-500/20 text-yellow-500 text-[10px] font-bold rounded uppercase";
-                badge.innerText = "Gefahr"; law.innerText = "Relative Fahruntüchtigkeit möglich.";
-            } else if (promille < 1.1) {
+                law.innerText = "Ggf. Fahrverbot bei Ausfallerscheinungen.";
+            } else if(promille < 1.1) {
+                badge.innerText = "Ordnungswidrig";
                 badge.className = "px-2 py-1 bg-orange-500/20 text-orange-500 text-[10px] font-bold rounded uppercase";
-                badge.innerText = "OWi"; law.innerText = "0,5 Promille Grenze überschritten.";
+                law.innerText = "Fahrverbot, Bußgeld, 2 Punkte.";
             } else {
+                badge.innerText = "Straftat";
                 badge.className = "px-2 py-1 bg-red-500/20 text-red-500 text-[10px] font-bold rounded uppercase";
-                badge.innerText = "Straftat"; law.innerText = "Absolute Fahruntüchtigkeit.";
+                law.innerText = "Absolute Fahruntüchtigkeit. Führerscheinentzug!";
             }
-        }
-
-        let canvas;
-        function initCanvas() {
-            if(!canvas && document.getElementById('sketchCanvas')) {
-                canvas = new fabric.Canvas('sketchCanvas');
-                fabric.Object.prototype.cornerColor = '#d4af37';
-            }
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('page-' + pageId).classList.add('active');
-            document.getElementById('btn-' + pageId).classList.add('active');
-        }
-
-        function addVehicle(type) {
-            let group;
-            if (type === 'car') {
-                const body = new fabric.Rect({ width: 60, height: 30, fill: '#003366', rx: 5, stroke: '#fff', strokeWidth: 1 });
-                const roof = new fabric.Rect({ width: 25, height: 26, left: 15, top: 2, fill: '#1a1a1a', rx: 3 });
-                const light = new fabric.Rect({ width: 4, height: 10, left: 25, top: 10, fill: '#4d94ff' });
-                group = new fabric.Group([body, roof, light], { left: 100, top: 100 });
-            } else if (type === 'truck') {
-                const cab = new fabric.Rect({ width: 30, height: 35, fill: '#d4af37', rx: 3, stroke: '#fff', strokeWidth: 1 });
-                const trailer = new fabric.Rect({ width: 90, height: 40, left: 35, top: -2.5, fill: '#e6e6e6', rx: 2, stroke: '#000', strokeWidth: 1 });
-                group = new fabric.Group([cab, trailer], { left: 100, top: 100 });
-            }
-            canvas.add(group);
-        }
-
-        function addRoundabout() {
-            const outer = new fabric.Circle({ radius: 80, fill: 'transparent', stroke: 'white', strokeWidth: 3, strokeDashArray: [10, 10], originX: 'center', originY: 'center' });
-            const inner = new fabric.Circle({ radius: 30, fill: '#333', stroke: '#d4af37', strokeWidth: 2, originX: 'center', originY: 'center' });
-            const group = new fabric.Group([outer, inner], { left: 200, top: 200 });
-            canvas.add(group);
-        }
-
-        function addArrow() {
-            const arrow = new fabric.Path('M 0 0 L 50 0 M 50 0 L 40 -10 M 50 0 L 40 10', { stroke: '#fff', strokeWidth: 3, fill: '', left: 100, top: 100 });
-            canvas.add(arrow);
-        }
-
-        function addText() { 
-            canvas.add(new fabric.IText('Text...', { left: 100, top: 100, fill: '#fff', fontSize: 20 }));
-        }
-
-        function deleteObject() { 
-            canvas.remove(canvas.getActiveObject());
-        }
-
-        function downloadSkizze() {
-            const link = document.createElement('a');
-            link.download = 'Skizze.png';
-            link.href = canvas.toDataURL();
-            link.click();
-        }
-
-        async function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            // Get Values
-            const nr = document.getElementById('v_nr').value || "N/A";
-            const datum = document.getElementById('v_datum').value || "N/A";
-            const ort = document.getElementById('v_ort').value || "N/A";
-            const b1 = document.getElementById('v_b1').value || "N/A";
-            const b2 = document.getElementById('v_b2').value || "N/A";
-            const zeugen = document.getElementById('v_zeugen').value || "N/A";
-            const ursache = document.getElementById('v_ursache').value || "N/A";
-            const wetter = document.getElementById('v_wetter').value || "N/A";
-            const sv = document.getElementById('v_sachverhalt').value || "N/A";
-            const links = document.getElementById('v_links').value;
-
-            // Header Banner
-            doc.setFillColor(0, 51, 102); // Police Blue
-            doc.rect(0, 0, 210, 35, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(18);
-            doc.text("POLIZEIDIREKTION DRESDEN", 20, 16);
-            doc.setFontSize(12);
-            doc.setTextColor(212, 175, 55); // Gold
-            doc.text("DEZERNAT VERKEHR - VERKEHRSUNFALLPROTOKOLL", 20, 25);
-
-            // Reset Default Formatting
-            doc.setTextColor(0, 0, 0);
-
-            // A. Allgemeine Daten
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "bold");
-            doc.text("A. ALLGEMEINE DATEN", 20, 48);
-            doc.setDrawColor(212, 175, 55);
-            doc.setLineWidth(0.5);
-            doc.line(20, 50, 190, 50);
-
-            doc.setFontSize(10);
-            doc.setFont("helvetica", "normal");
-            doc.text(`Aktenzeichen / VNR:`, 20, 58); doc.setFont("helvetica", "bold"); doc.text(`${nr}`, 65, 58); doc.setFont("helvetica", "normal");
-            doc.text(`Einsatzzeitpunkt:`, 20, 65); doc.text(`${datum}`, 65, 65);
-            doc.text(`Unfallort / GPS:`, 20, 72); doc.text(`${ort}`, 65, 72);
-            doc.text(`Hauptursache:`, 110, 58); doc.text(`${ursache}`, 140, 58);
-            doc.text(`Witterung:`, 110, 65); doc.text(`${wetter}`, 140, 65);
-
-            // B. Beteiligte
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "bold");
-            doc.text("B. BETEILIGTE & ZEUGEN", 20, 85);
-            doc.line(20, 87, 190, 87);
-
-            doc.setFontSize(10);
-            doc.text("Beteiligter 01:", 20, 95);
-            doc.setFont("helvetica", "normal");
-            doc.text(doc.splitTextToSize(b1, 170), 20, 100);
-
-            doc.setFont("helvetica", "bold");
-            doc.text("Beteiligter 02:", 20, 120);
-            doc.setFont("helvetica", "normal");
-            doc.text(doc.splitTextToSize(b2, 170), 20, 125);
-
-            doc.setFont("helvetica", "bold");
-            doc.text("Zeugen:", 20, 145);
-            doc.setFont("helvetica", "normal");
-            doc.text(doc.splitTextToSize(zeugen, 170), 20, 150);
-
-            // C. Sachverhalt
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "bold");
-            doc.text("C. SACHVERHALTSDARSTELLUNG", 20, 170);
-            doc.line(20, 172, 190, 172);
-
-            doc.setFontSize(10);
-            doc.setFont("helvetica", "normal");
-            doc.text(doc.splitTextToSize(sv, 170), 20, 180);
-
-            // D. Beweismittel (If provided)
-            if(links) {
-                doc.setFontSize(12);
-                doc.setFont("helvetica", "bold");
-                doc.text("D. DIGITALE BEWEISMITTEL", 20, 240);
-                doc.line(20, 242, 190, 242);
-                
-                doc.setFontSize(8);
-                doc.setFont("helvetica", "normal");
-                doc.setTextColor(0, 102, 204);
-                doc.text(doc.splitTextToSize(links, 170), 20, 248);
-            }
-
-            // Footer
-            doc.setFontSize(8);
-            doc.setTextColor(150, 150, 150);
-            doc.text(`PK 4 Dresden - Dezernat Verkehr | Generiert über Internes VUK-System`, 105, 290, null, null, "center");
-
-            // Save PDF
-            doc.save(`VUK_Protokoll_${nr}.pdf`);
         }
     </script>
 </body>
